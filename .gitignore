@@ -1,3 +1,6 @@
+#Variables
+backend/.env
+
 # Logs
 logs
 *.log
