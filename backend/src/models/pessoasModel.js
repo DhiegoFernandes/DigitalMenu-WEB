@@ -8,6 +8,15 @@ const pessoasModel = {
         } catch (err) {
             throw err;
         }
+    },
+
+    postPessoas: async (nome, sobrenome, idade) => {
+        try{
+            const sql = 'INSERT INTO pessoas (nome,sobrenome,idade) VALUES (?,?,?)';
+            await connection.execute(sql,[nome, sobrenome, idade]);
+        }catch(err){
+            throw err;
+        }
     }
 };
 
