@@ -1,15 +1,15 @@
 const connection = require('./connection');
 
-const get = {
-    getPessoas: async (req, res) => {
-        let query = `SELECT * FROM pessoas`;
-        const resultado = await connection.query(query);
-        return resultado
+const pessoasModel = {
+    getPessoas: async () => {
+        try {
+            const [rows, fields] = await connection.execute('SELECT * FROM pessoas');
+            return rows; 
+        } catch (err) {
+            throw err;
+        }
     }
-    
 };
 
 
-module.exports = {
-    get
-};
+module.exports = pessoasModel;
