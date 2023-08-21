@@ -47,4 +47,16 @@ exports.delete = async(req,res)=>{
         console.error(err);
         res.status(500).json({error:'Erro ao deletar usuário'});
     }
-}
+};
+
+exports.get = async(req,res)=>{
+    const {nome} = req.params;
+
+    try{
+       const usuario = await authModel.buscarPorUsuario(nome);
+        res.json(usuario);
+    }catch(err){
+        console.error(err);
+        res.status(500).json({error:"Usuario nao esta cadastrado"});
+    }
+};

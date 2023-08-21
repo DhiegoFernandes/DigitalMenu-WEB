@@ -38,6 +38,15 @@ const authModel = {
         try{
             const sql = 'DELETE FROM usuarios WHERE nome = ?';
             await connection.execute(sql, [nome]);
+            return sql;
+        }catch(err){
+            throw err;
+        }
+    },
+    buscarPorUsuario : async (nome) => {
+        try{
+            const sql = 'SELECT * FROM usuarios WHERE nome = ?';
+            await connection.execute(sql, [nome]);
         }catch(err){
             throw err;
         }

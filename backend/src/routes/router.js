@@ -13,4 +13,5 @@ router.get('/', (req,res) => {res.status(200).send("Bem-vindo à minha API")});
 router.use('/login', authController.login);
 router.post('/register', authController.register);
 router.delete('/user/:nome',authController.delete);
+router.get('/user/:nome', authController.get)
 module.exports = router;
