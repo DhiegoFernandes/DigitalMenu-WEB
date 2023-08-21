@@ -40,7 +40,7 @@ const pessoasController = {
         try{
             const id = req.params.id;
             await pessoasModel.deletePessoas(id);
-            res.status(200).json({error: 'Usuário deletado com sucesso!'});
+            res.status(200).json({sucess: 'Usuário deletado com sucesso!'});
         }catch(err){
             console.error('Erro ao deletar');
             res.status(500).json({error:'Erro ao deletar usuário'});
