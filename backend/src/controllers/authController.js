@@ -53,10 +53,29 @@ exports.get = async(req,res)=>{
     const {nome} = req.params;
 
     try{
-       const usuario = await authModel.buscarPorUsuario(nome);
+        const usuario = await authModel.buscarPorUsuario(nome);
         res.json(usuario);
     }catch(err){
         console.error(err);
         res.status(500).json({error:"Usuario nao esta cadastrado"});
+    }
+};
+
+exports.put = async (req, res) => {
+    const { nome } = req.params;
+    const { senha } = req.body; 
+    
+    try {
+        const usuario = await authModel.buscarPorUsuario(nome);
+        if (!usuario) {
+            res.status(404).json({ error: "Usuário não encontrado" });
+            return;
+        }
+
+        await authModel.atualizarSenha(nome, senha);
+        res.status(200).json({ success: "Senha atualizada com sucesso!" });
+    } catch (err) {
+        console.error(err);
+        res.status(500).json({ error: "Erro ao atualizar senha do usuário" });
     }
 };
