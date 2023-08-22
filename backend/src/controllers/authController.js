@@ -1,3 +1,4 @@
+const e = require('express');
 const authModel = require('../models/authModel');
 const connection = require('../models/connection');
 
@@ -39,10 +40,14 @@ exports.register = async (req, res) => {
 
 exports.delete = async(req,res)=>{
     const {nome} = req.params;
-
+    const existUser = await authModel.verificaExistencia(nome);
     try{
-        await authModel.delete(nome);
-        res.status(200).json({success : 'Usuário deletado com sucesso!'});
+        if(!existUser){
+            res.status(500).json({error : 'Usuario nao existe'});     
+        }else{
+            await authModel.delete(nome);
+            res.status(200).json({success : 'Usuário deletado com sucesso!'});
+        }
     }catch(err){
         console.error(err);
         res.status(500).json({error:'Erro ao deletar usuário'});
@@ -59,6 +64,16 @@ exports.get = async(req,res)=>{
         console.error(err);
         res.status(500).json({error:"Usuario nao esta cadastrado"});
     }
+};
+
+exports.getAll = async(req,res)=>{
+
+    try{
+    const usuario = await authModel.listarTodosUsuarios()
+    }catch(err){
+        console.log(err);
+        res.status(500).json({error:'Erro ao listar todos os usuarios'})
+    }    
 };
 
 exports.put = async (req, res) => {
