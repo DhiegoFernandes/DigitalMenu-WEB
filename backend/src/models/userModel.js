@@ -1,6 +1,6 @@
 const connection = require('./connection');
 
-const authModel = {
+const UserModel = {
     autenticar: async (nome,senha /*, mesa*/) => {
         try{
             const [rows, fields] = await connection.execute(
@@ -24,6 +24,17 @@ const authModel = {
         }
     },
 
+    listarUsuarioAtivos : async() =>{
+        try{
+            const [rows, fields] = await connection.execute(
+                'SELECT USUARIO, TIPOACESSO, STATUS FROM usuario WHERE STATUS = \'ATIVADO\';'
+            );
+            return rows;
+        }catch(err){
+            throw err;
+        }
+    },
+
     buscarPorUsuario: async (nome) => {
         try {
             const [rows, fields] = await connection.execute(
@@ -36,6 +47,22 @@ const authModel = {
                 return null; 
             }
         } catch (err) {
+            throw err;
+        }
+    },
+
+    listarCategoriaPorNome : async (nome) => {
+        try{
+            const [rows, fields] = await connection.execute(
+                'SELECT USUARIO, TIPOACESSO, STATUS FROM usuario WHERE usuario LIKE CONCAT(\'%\',?,\'%\');',
+                [nome]
+            );
+            if(rows.length > 0) {
+            return rows;
+            } else {
+                return null;
+            }    
+        }catch(err){
             throw err;
         }
     },
@@ -81,4 +108,4 @@ const authModel = {
     }
 };
 
-module.exports = authModel;
+module.exports = UserModel;
