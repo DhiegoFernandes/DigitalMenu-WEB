@@ -21,7 +21,7 @@ exports.login = async( req, res) => {
 };
 
 exports.register = async (req, res) => {
-    const {nome, senha} = req.body;
+    const {nome, senha, tipoAcesso} = req.body;
 
     try{
         const existUser = await authModel.verificaExistencia(nome);
@@ -29,7 +29,7 @@ exports.register = async (req, res) => {
         if(existUser.length > 0){
             res.status(404).json({error : 'Usuario ja existe'});
         }else{
-            await authModel.registrar(nome,senha);
+            await authModel.registrar(nome,senha, tipoAcesso);
             res.status(201).json({success : 'Registro bem-sucedido'});
         }
     }catch(err){
@@ -70,6 +70,7 @@ exports.getAll = async(req,res)=>{
 
     try{
     const usuario = await authModel.listarTodosUsuarios()
+    res.json(usuario);
     }catch(err){
         console.log(err);
         res.status(500).json({error:'Erro ao listar todos os usuarios'})

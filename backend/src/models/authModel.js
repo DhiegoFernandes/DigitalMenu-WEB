@@ -4,7 +4,7 @@ const authModel = {
     autenticar: async (nome,senha /*, mesa*/) => {
         try{
             const [rows, fields] = await connection.execute(
-                'SELECT * FROM usuario WHERE USUARIO = ? AND SENHA = ?',
+                'SELECT * FROM usuario WHERE USUARIO = ? AND SENHA = ?;',
                 [nome,senha]
             );
             return rows;
@@ -13,11 +13,12 @@ const authModel = {
         }
     },
 
-    listarTodosUsuarios: async (nome,tipoacesso,status) => {
+    listarTodosUsuarios: async () => {
         try{
             const [rows, fields] = await connection.execute(
-                'SELECT USUARIO,TIPOACESSO, STATUS FROM usuario;'
+                'SELECT USUARIO, TIPOACESSO, STATUS FROM usuario;',
             );
+            return rows;
         }catch(err){
             throw err;
         }
@@ -26,13 +27,13 @@ const authModel = {
     buscarPorUsuario: async (nome) => {
         try {
             const [rows, fields] = await connection.execute(
-                'SELECT USUARIO, TIPOACESSO, STATUS FROM usuario WHERE USUARIO = ?',
+                'SELECT USUARIO, TIPOACESSO, STATUS FROM usuario WHERE USUARIO = ?;',
                 [nome]
             );
             if (rows.length > 0) {
-                return rows[0]; // Return the first row as the user object
+                return rows[0]; 
             } else {
-                return null; // Return null if user not found
+                return null; 
             }
         } catch (err) {
             throw err;
@@ -42,7 +43,7 @@ const authModel = {
     verificaExistencia: async (nome) => {
         try{
             const [rows, fields] = await connection.execute(
-                'SELECT * FROM usuario WHERE USUARIO =?',
+                'SELECT * FROM usuario WHERE USUARIO =?;',
                 [nome]
             );
             return rows.length > 0;
@@ -51,10 +52,10 @@ const authModel = {
         }
     },
 
-    registrar: async (nome,senha) => {
+    registrar: async (nome,senha,tipoAcesso) => {
         try{
-            const sql = 'INSERT INTO usuario (USUARIO,SENHA) VALUES(?,?)';
-            await connection.execute(sql, [nome,senha]);
+            const sql = 'INSERT INTO usuario (USUARIO,SENHA,TIPOACESSO) VALUES(?,?,?);';
+            await connection.execute(sql, [nome,senha,tipoAcesso]);
         }catch(err){
             throw err;
         }
@@ -62,7 +63,7 @@ const authModel = {
 
     delete: async (nome) => {
         try{
-            const sql = 'DELETE FROM usuarios WHERE USUARIO = ?';
+            const sql = 'DELETE FROM usuarios WHERE USUARIO = ?;';
             await connection.execute(sql, [nome]);
             return sql;
         }catch(err){
@@ -72,7 +73,7 @@ const authModel = {
     
     atualizarSenha : async (nome, senha) => {
         try{
-            const sql = 'UPDATE usuarios SET senha = ? WHERE USUARIO = ?'
+            const sql = 'UPDATE usuarios SET senha = ? WHERE USUARIO = ?;'
             await connection.execute(sql,[senha,nome]);
         }catch(err){
             throw err;
