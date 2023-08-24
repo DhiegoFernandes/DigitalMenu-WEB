@@ -16,7 +16,7 @@ const UserModel = {
     listarTodosUsuarios: async () => {
         try{
             const [rows, fields] = await connection.execute(
-                'SELECT USUARIO, TIPOACESSO, STATUS FROM usuario;',
+                'SELECT USUARIO, TIPOACESSO, STATUS FROM usuario;'
             );
             return rows;
         }catch(err){
