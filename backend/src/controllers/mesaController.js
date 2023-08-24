@@ -8,7 +8,7 @@ exports.insertMesa = async(req,res) =>{
     try{
         const mesa = await mesaModel.criarMesa(idMesa);
         res.status(201).json(mesa);
-    }catch(err){
+    }catch(error){
         console.error(err);
         res.status(500).json(error);;
     }
@@ -19,7 +19,7 @@ exports.listarTodasMesas = async(req, res) =>{
     try{
         const mesas = await mesaModel.listarTodasMesas();
         res.json(mesas);
-    }catch(err){
+    }catch(error){
         console.error(err);
         res.status(500).json(error);;
     }
