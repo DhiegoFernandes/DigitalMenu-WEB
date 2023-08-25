@@ -43,7 +43,7 @@ exports.atualizarItemParaCancelado = async (req, res) => {
 
     try {
         const item = await itemModel.atualizarItem(iditem);
-        res.status(201).json(item);
+        res.status(204).json(item);
     } catch (error) {
         console.error(error);
         res.status(500).json(error);
@@ -59,5 +59,17 @@ exports.addItemAdmin = async (req, res) => {
     }catch (error) {
         console.error(error);
         res.status(500).json({ error: 'Erro ao adicionar o item.' });
+    }
+};
+
+exports.listarItensConfirmadosPorPedido = async (req, res) => {
+    const id_pedido = req.params.id_pedido;
+
+    try {
+        const result = await itemModel.listarItensConfirmadoPorPedido(id_pedido);
+        res.status(200).json(result)
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'Erro ao listar.' });
     }
 };

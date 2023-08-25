@@ -53,6 +53,23 @@ const itemModel = {
         }catch (error) {
         throw error; 
         } 
+    },
+
+    listarItensConfirmadoPorPedido : async (id_pedido) => {
+        try {
+            const [rows,fields] = await connection.execute(
+                'SELECT i.iditem, p.idproduto, p.nome, p.preco, i.qtde, i.subtotal, i.horapedido AS horacomanda, i.status '
+                + 'FROM item i '
+                + 'INNER JOIN produto p '
+                + 'ON p.idproduto = i.id_produto '
+                + 'WHERE id_pedido = ? '
+                + 'AND i.status = \'CONFIRMADO\';',
+                [id_pedido]
+            );
+            return rows;
+        } catch (error) {
+        throw error;    
+        }
     }
 }
 
