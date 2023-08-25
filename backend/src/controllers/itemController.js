@@ -25,3 +25,27 @@ exports.listarItemPorPedido = async (req, res) => {
         res.status(500).json(error);
     }
 };
+
+exports.listarPorId = async (req, res) => {
+    const {id_pedido} = req.params;
+
+    try {
+        const pedido = await itemModel.listarItensPorId(id_pedido);
+        res.status(200).json(pedido);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json(error);
+    }
+};
+
+exports.atualizarItemParaCancelado = async (req, res) => {
+    const {iditem} = req.params;
+
+    try {
+        const item = await itemModel.atualizarItem(iditem);
+        res.status(201).json(item);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json(error);
+    }
+};
