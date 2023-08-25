@@ -49,3 +49,15 @@ exports.atualizarItemParaCancelado = async (req, res) => {
         res.status(500).json(error);
     }
 };
+
+exports.addItemAdmin = async (req, res) => {
+    const item = req.body; 
+
+    try {
+        const result = await itemModel.adicionarItemAdm(item);
+        res.status(200).json({ message: 'Item adicionado com sucesso!' });
+    }catch (error) {
+        console.error(error);
+        res.status(500).json({ error: 'Erro ao adicionar o item.' });
+    }
+};
