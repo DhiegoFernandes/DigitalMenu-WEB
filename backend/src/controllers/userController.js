@@ -1,6 +1,6 @@
 const express = require('express');
 const UserModel = require('../models/userModel');
-const connection = require('../models/connection');
+const connection = require('../connection/connection');
 
 exports.login = async( req, res) => {
     const { nome, senha} = req.body;
@@ -96,7 +96,7 @@ exports.put = async (req, res) => {
         }
 
         await UserModel.atualizarSenha(nome, senha);
-        res.status(204).json({ success: "Senha atualizada com sucesso!" });
+        res.status(200).json({ success: "Senha atualizada com sucesso!" });
     } catch (err) {
         console.error(err);
         res.status(500).json({ error: "Erro ao atualizar senha do usuário" });

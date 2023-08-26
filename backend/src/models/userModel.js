@@ -1,7 +1,7 @@
-const connection = require('./connection');
+const connection = require('../connection/connection');
 
 const UserModel = {
-    autenticar: async (nome,senha /*, mesa*/) => {
+    autenticar: async (nome,senha) => {
         try{
             const [rows, fields] = await connection.execute(
                 'SELECT * FROM usuario WHERE USUARIO = ? AND SENHA = ?;',

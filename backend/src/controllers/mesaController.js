@@ -1,6 +1,6 @@
 const express = require('express');
 const mesaModel = require('../models/mesaModel');
-const connection = require('../models/connection');
+const connection = require('../connection/connection');
 
 exports.insertMesa = async(req,res) =>{
     const{idMesa} = req.body;

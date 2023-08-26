@@ -1,6 +1,6 @@
 const express = require('express');
 const itemModel = require('../models/itemModel');
-const connection = require('../models/connection');
+const connection = require('../connection/connection');
 
 exports.insertItem = async(req,res) =>{
     const{id_pedido, id_produto,qtde,subtotal,observacao} = req.body;
