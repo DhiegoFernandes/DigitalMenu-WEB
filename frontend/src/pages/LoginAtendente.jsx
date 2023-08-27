@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 function LoginAtendente() {
   
-  const [email, setEmail] = useState("");
+  const [nome, setNome] = useState("");
   const [senha, setSenha] = useState("");
   // const [usuario, setUsuario] = useState("mesa");
 
@@ -12,21 +12,18 @@ function LoginAtendente() {
   return (
     <>
       <div>
-        <h2>Login</h2>
+        <h2>Login Atendente</h2>
         <p><Link to="/">voltar</Link></p>
       </div>
-      <div>
-        fazer opition de mesa ou garçom e o context do autenticacaoLogin
-      </div>
       <form className="formulario">
-        <div className="email-e-senha">
+        <div className="nome-e-senha">
           <input 
             autoFocus
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            placeholder="Email"
-            type="email"
-            className="email"
+            value={nome}
+            onChange={(e) => setNome(e.target.value)}
+            placeholder="Nome"
+            type="text"
+            className="nome"
           />
           <div>
             <input 
@@ -64,7 +61,7 @@ function LoginAtendente() {
         <div className="botao-enviar">
           <button
             type="submit"
-            onClick={(e) => atenticacaoLogin(e, email, senha)}
+            onClick={(e) => atenticacaoLogin(e, nome, senha)}
           >
             Entrar
           </button>

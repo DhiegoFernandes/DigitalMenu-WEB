@@ -3,68 +3,29 @@ import { Link } from "react-router-dom";
 
 function LoginMesa() {
   
-  const [email, setEmail] = useState("");
-  const [senha, setSenha] = useState("");
-  // const [usuario, setUsuario] = useState("mesa");
-
-  const [tipoSenha, setTipoSenha] = useState("password");
+  const [numero, setNumero] = useState("");
 
   return (
     <>
       <div>
-        <h2>Login</h2>
+        <h2>Login Mesa</h2>
         <p><Link to="/">voltar</Link></p>
       </div>
-      <div>
-        fazer opition de mesa ou garçom e o context do autenticacaoLogin
-      </div>
       <form className="formulario">
-        <div className="email-e-senha">
+        <div className="numero">
           <input 
             autoFocus
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            placeholder="Email"
-            type="email"
-            className="email"
+            value={numero}
+            onChange={(e) => setNumero(e.target.value)}
+            placeholder="Número"
+            type="number"
+            className="numero"
           />
-          <div>
-            <input 
-              value={senha}
-              onChange={(e) => setSenha(e.target.value)}
-              placeholder="Senha"
-              className="senha"
-              type={tipoSenha}
-            />
-            {tipoSenha === "password" ? (
-              <button
-                className="botao-mostraSenha"
-                type="button"
-                onClick={(e) => {
-                  e.preventDefault();
-                  setTipoSenha("text")
-                }}
-              >
-                mostrar senha
-              </button>
-            ) : (
-              <button
-                className="botao-escondeSenha"
-                type="button"
-                onClick={(e) => {
-                  e.preventDefault();
-                  setTipoSenha("password")
-                }}
-              >
-                esconder senha
-              </button>
-            )}
-          </div>
         </div>
         <div className="botao-enviar">
           <button
             type="submit"
-            onClick={(e) => atenticacaoLogin(e, email, senha)}
+            onClick={(e) => atenticacaoLogin(e, numero)}
           >
             Entrar
           </button>
