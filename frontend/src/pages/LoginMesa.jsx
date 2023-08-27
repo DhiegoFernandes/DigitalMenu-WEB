@@ -25,7 +25,7 @@ function LoginMesa() {
         <div className="botao-enviar">
           <button
             type="submit"
-            onClick={(e) => atenticacaoLogin(e, numero)}
+            onClick={(e) => atenticacaoMesa(e, numero)}
           >
             Entrar
           </button>

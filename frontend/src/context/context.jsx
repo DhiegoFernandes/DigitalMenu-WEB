@@ -11,15 +11,14 @@ function MainProvider({ children }){
     const navigate = useNavigate();
     
     
-    
     return(
-        <MainProvider
+        <MainContext.Provider
             values={{
 
             }}
         >
             {children}
-        </MainProvider>
+        </MainContext.Provider>
     )
 }
 

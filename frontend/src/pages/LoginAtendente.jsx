@@ -61,7 +61,7 @@ function LoginAtendente() {
         <div className="botao-enviar">
           <button
             type="submit"
-            onClick={(e) => atenticacaoLogin(e, nome, senha)}
+            onClick={(e) => atenticacaoAtendente(e, nome, senha)}
           >
             Entrar
           </button>

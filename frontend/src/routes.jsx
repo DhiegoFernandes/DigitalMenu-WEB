@@ -4,18 +4,22 @@ import Home from './pages/Home'
 import LoginAtendente from './pages/LoginAtendente'
 import LoginMesa from './pages/LoginMesa'
 import Sistema from './pages/Sistema'
+import MainProvider from './context/context'
+
 
 function Rotas() {
   
   return (
     <>
       <BrowserRouter>
-        <Routes>
-          <Route path='/' element={<Home />}/>
-          <Route path='/loginatendente' element={<LoginAtendente />}/>
-          <Route path='/loginmesa' element={<LoginMesa />}/>
-          <Route path='/sitema' element={<Sistema />}/>
-        </Routes>
+        <MainProvider>
+            <Routes>
+              <Route path='/' element={<Home />}/>
+              <Route path='/loginatendente' element={<LoginAtendente />}/>
+              <Route path='/loginmesa' element={<LoginMesa />}/>
+              <Route path='/sitema' element={<Sistema />}/>
+            </Routes>
+          </MainProvider>
       </BrowserRouter>
     </>
   )
