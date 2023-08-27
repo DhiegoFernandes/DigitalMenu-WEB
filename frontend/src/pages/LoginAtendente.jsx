@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 
-function Login() {
+function LoginAtendente() {
   
   const [email, setEmail] = useState("");
   const [senha, setSenha] = useState("");
@@ -74,4 +74,4 @@ function Login() {
   )
 }
 
-export default Login;
+export default LoginAtendente;
