@@ -1,8 +1,11 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { Link } from "react-router-dom";
+import { MainContext } from "../context/context";
 
 function LoginMesa() {
   
+  const {autenticacaoMesa} = useContext(MainContext);
+
   const [numero, setNumero] = useState("");
 
   return (
@@ -25,7 +28,7 @@ function LoginMesa() {
         <div className="botao-enviar">
           <button
             type="submit"
-            onClick={(e) => atenticacaoMesa(e, numero)}
+            onClick={(e) => autenticacaoMesa(e, numero)}
           >
             Entrar
           </button>

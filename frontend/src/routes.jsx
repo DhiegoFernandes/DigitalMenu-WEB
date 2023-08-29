@@ -17,7 +17,7 @@ function Rotas() {
               <Route path='/' element={<Home />}/>
               <Route path='/loginatendente' element={<LoginAtendente />}/>
               <Route path='/loginmesa' element={<LoginMesa />}/>
-              <Route path='/sitema' element={<Sistema />}/>
+              <Route path='/sistema' element={<Sistema />}/>
             </Routes>
           </MainProvider>
       </BrowserRouter>

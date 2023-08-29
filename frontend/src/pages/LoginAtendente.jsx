@@ -1,11 +1,14 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import { Link } from "react-router-dom";
+import { MainContext } from "../context/context";
 
 function LoginAtendente() {
+
+  const {autenticacaoAtendente} = useContext(MainContext);
   
   const [nome, setNome] = useState("");
   const [senha, setSenha] = useState("");
-  // const [usuario, setUsuario] = useState("mesa");
+
 
   const [tipoSenha, setTipoSenha] = useState("password");
 
@@ -61,7 +64,7 @@ function LoginAtendente() {
         <div className="botao-enviar">
           <button
             type="submit"
-            onClick={(e) => atenticacaoAtendente(e, nome, senha)}
+            onClick={(e) => autenticacaoAtendente(e, nome, senha)}
           >
             Entrar
           </button>
