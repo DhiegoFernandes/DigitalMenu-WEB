@@ -6,7 +6,7 @@ function LoginMesa() {
   
   const {autenticacaoMesa} = useContext(MainContext);
 
-  const [numero, setNumero] = useState("");
+  const [idMesa, setidMesa] = useState("");
 
   return (
     <>
@@ -18,8 +18,8 @@ function LoginMesa() {
         <div className="numero">
           <input 
             autoFocus
-            value={numero}
-            onChange={(e) => setNumero(e.target.value)}
+            value={idMesa}
+            onChange={(e) => setidMesa(e.target.value)}
             placeholder="Número"
             type="number"
             className="numero"
@@ -28,7 +28,7 @@ function LoginMesa() {
         <div className="botao-enviar">
           <button
             type="submit"
-            onClick={(e) => autenticacaoMesa(e, numero)}
+            onClick={(e) => autenticacaoMesa(e, idMesa)}
           >
             Entrar
           </button>

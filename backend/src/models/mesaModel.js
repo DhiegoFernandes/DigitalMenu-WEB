@@ -21,15 +21,17 @@ const mesaModel = {
         }
     },
 
-    checkMesa : async (id) => {
+    checkMesa : async (idMesa) => {
         try {
             const [rows,fields] = await connection.execute( 
                 'SELECT idmesa, status FROM mesa WHERE idmesa = ? AND status = \'ATIVADO\';',
-                [id]    
+                [idMesa]    
             );
             if(rows.length > 0){
             return rows
-            }else return 'Mesa nao encontrada';
+            }else{ 
+                return null;
+            }    
         } catch (err) {
             throw err;
         }

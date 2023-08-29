@@ -26,11 +26,19 @@ exports.listarTodasMesas = async(req, res) =>{
 };
 
 exports.checkMesas = async(req,res) =>{
-    const{id} = req.params;
+    const{idMesa} = req.body;
 
     try {
-        const mesa = await mesaModel.checkMesa(id);
-        res.status(200).json(mesa);
+        const mesa = await mesaModel.checkMesa(idMesa);
+        if (mesa !== null) { // Verifica se mesa não é nulo
+            if (mesa.length > 0) {
+                res.status(200).json({ message: 'Login bem-sucedido' });
+            } else {
+                res.status(401).json({ error: 'Credenciais inválidas' });
+            }
+        } else {
+            res.status(401).json({ error: 'Credenciais inválidas' });
+        }
     } catch (error) {
         res.status(500).json(error);
         console.error(error);

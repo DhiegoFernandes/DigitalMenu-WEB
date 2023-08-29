@@ -24,24 +24,24 @@ function MainProvider({ children }){
         }
     }
     
-    // async function autenticacaoMesa(e, numero){
-    //     e.preventDefault();
-    //     numero = numero.trim();
+    async function autenticacaoMesa(e, idMesa){
+        e.preventDefault();
+        idMesa = idMesa.trim();
 
-    //     try{
-    //         const { data } = await api.post("/login", {numero});
-    //         navigate("/sistema");
-    //         console.log(data)
-    //     }catch (e) {
-    //         console.log("Erro na autenticação" + e);
-    //     }
-    // }
+        try{
+            const { data } = await api.post("/mesa/check", {idMesa});
+            navigate("/sistema");
+            console.log(data)
+        }catch (e) {
+            console.log("Erro na autenticação" + e);
+        }
+    }
     
     return(
         <MainContext.Provider
             value={{
                 autenticacaoAtendente,
-                // autenticacaoMesa
+                autenticacaoMesa
             }}
         >
             {children}
