@@ -14,18 +14,17 @@ function LoginMesa() {
         <h2>Login Mesa</h2>
         <p><Link to="/">voltar</Link></p>
       </div>
-      <form className="formulario">
-        <div className="numero">
+      <form>
+        <div>
           <input 
             autoFocus
             value={idMesa}
             onChange={(e) => setidMesa(e.target.value)}
             placeholder="Número"
             type="number"
-            className="numero"
           />
         </div>
-        <div className="botao-enviar">
+        <div>
           <button
             type="submit"
             onClick={(e) => autenticacaoMesa(e, idMesa)}
