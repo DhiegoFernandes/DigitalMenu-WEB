@@ -18,27 +18,24 @@ function LoginAtendente() {
         <h2>Login Atendente</h2>
         <p><Link to="/">voltar</Link></p>
       </div>
-      <form className="formulario">
-        <div className="nome-e-senha">
+      <form>
+        <div>
           <input 
             autoFocus
             value={nome}
             onChange={(e) => setNome(e.target.value)}
             placeholder="Nome"
             type="text"
-            className="nome"
           />
           <div>
             <input 
               value={senha}
               onChange={(e) => setSenha(e.target.value)}
               placeholder="Senha"
-              className="senha"
               type={tipoSenha}
             />
             {tipoSenha === "password" ? (
               <button
-                className="botao-mostraSenha"
                 type="button"
                 onClick={(e) => {
                   e.preventDefault();
@@ -49,7 +46,6 @@ function LoginAtendente() {
               </button>
             ) : (
               <button
-                className="botao-escondeSenha"
                 type="button"
                 onClick={(e) => {
                   e.preventDefault();
@@ -61,7 +57,7 @@ function LoginAtendente() {
             )}
           </div>
         </div>
-        <div className="botao-enviar">
+        <div>
           <button
             type="submit"
             onClick={(e) => autenticacaoAtendente(e, nome, senha)}
