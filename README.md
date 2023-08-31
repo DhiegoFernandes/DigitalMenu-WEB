@@ -16,7 +16,6 @@ $ cd DigitalMenu
 $ npm install
 
 # Execute a aplicação
-$ cd backend
 $ npm run start:both
 ```
 
