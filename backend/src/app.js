@@ -4,10 +4,11 @@ const routerUser = require('./routes/routerUser');
 const routerMesa = require('./routes/routerMesa');
 const routerItem = require('./routes/routerItem');
 const routerCategoria = require('./routes/routerCategoria');
+const routerProduto = require('./routes/routerProduto');
 const app = express();
 
 app.use(cors());
 app.use(express.json());
-app.use(routerUser,routerMesa,routerItem,routerCategoria);
+app.use(routerUser,routerMesa,routerItem,routerCategoria, routerProduto);
 
 module.exports = app;
