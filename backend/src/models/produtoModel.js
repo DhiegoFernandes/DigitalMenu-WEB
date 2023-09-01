@@ -7,14 +7,11 @@ const produtoModel = {
             +'SELECT ?, ?, ?, c.idcategoria '
             +'FROM categoria c '
             +'WHERE c.nome = ?;'
-           const a = await connection.execute(sql, [nome, preco, descricao, categoria]);
+            const a = await connection.execute(sql, [nome, preco, descricao, categoria]);
         } catch (error) {
             throw error;
         }
     },
-
-//    'INSERT INTO produto (nome, preco, descricao, id_categoria, status) ' +
-  //              'VALUES (?, ?, ?, (SELECT idcategoria FROM categoria WHERE nome = ?), DEFAULT)';
 
     listarProduto : async() => {
         try {
@@ -61,6 +58,71 @@ const produtoModel = {
         }
     },
 
+    listarPorStatus : async(status) => {
+        try {
+            const [rows, fields] = await connection.execute(
+                'SELECT p.idproduto, p.nome, c.nome, p.preco, p.descricao, p.status, p.id_categoria '
+                + 'FROM produto p '
+                + 'INNER JOIN categoria c '
+                + 'ON p.id_categoria = c.idcategoria '
+                + 'WHERE p.status = ?;',
+                [status]
+            );
+            return rows
+        } catch (error) {
+            throw error;
+        }
+    },
+
+    listarProdutoPorFaixaDePreco : async(valorInicial, valorFinal) =>{
+        try {
+            const [rows, field] = await connection.execute(
+                'SELECT p.idproduto, p.nome, c.nome, p.preco, p.descricao, p.status, p.id_categoria '
+                + 'FROM produto p '
+                + 'INNER JOIN categoria c '
+                + 'ON p.id_categoria = c.idcategoria '
+                + 'WHERE p.preco BETWEEN ? AND ? '
+                + 'ORDER BY p.preco;',
+                [valorInicial,valorFinal]
+            );
+            return rows;
+        } catch (error) {
+            throw error;
+        }
+    },
+
+    listarProdutoPorDescricao : async(descricao) => {
+        try {
+            const [rows, fields] = await connection.execute(
+            'SELECT p.idproduto, p.nome, c.nome, p.preco, p.descricao, p.status, p.id_categoria '
+            + 'FROM produto p '
+            + 'INNER JOIN categoria c '
+            + 'ON p.id_categoria = c.idcategoria '
+            + 'WHERE p.descricao LIKE CONCAT(\'%\', ?, \'%\');',
+                [descricao]
+            );
+            return rows;
+        } catch (error) {
+            throw error;
+        }
+    },
+
+    listarProdutoPorCategoria : async(categoria) => {
+        try {
+            const [rows, fields] = await connection.execute(
+                'SELECT p.idproduto, p.nome, c.nome, p.preco, p.descricao, p.status, p.id_categoria '
+                + 'FROM produto p '
+                + 'INNER JOIN categoria c '
+                + 'ON p.id_categoria = c.idcategoria '
+                + 'WHERE c. nome = ?;',
+                [categoria]
+            );
+            return rows
+        } catch (error) {
+            throw error;
+        }
+    },
+
     alterarProdutoPeloNome : async(nomeNovo, preco, descricao, categoria, status, nome) => {
         try {
             const sql = 
@@ -89,5 +151,6 @@ const produtoModel = {
         }
     }
 };
+    
 
 module.exports = produtoModel;

@@ -47,6 +47,54 @@ exports.listarProdutoPorNome = async(req, res) => {
     }
 };
 
+exports.listarProdutoPorStatus = async(req, res) => {
+    const{status} = req.body;
+
+    try {
+        const produto = await produtoModel.listarPorStatus(status);
+        res.status(200).json(produto)
+    } catch (error) {
+        console.error(error);
+        res.status(500).json(error);
+    }
+};
+
+exports.listarProdutoPorFaixaDePreco = async(req, res) => {
+    const{valorInicial, valorFinal} = req.body;
+
+    try {
+        const produto = await produtoModel.listarProdutoPorFaixaDePreco(valorInicial, valorFinal);
+        res.status(200).json(produto);    
+    } catch (error) {
+        console.error(error);
+        res.status(500).json(error);
+    }
+};
+
+exports.listarProdutoPorDescricao = async(req, res) => {
+    const{descricao} = req.body;
+
+    try {
+        const produto = await produtoModel.listarProdutoPorDescricao(descricao);
+        res.status(200).json(produto);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json(error);
+    }
+};
+
+exports.listarProdutoPorCategoria = async(req, res) => {
+    const{categoria} = req.body;
+
+    try {
+        const produto = await produtoModel.listarProdutoPorCategoria(categoria);
+        res.status(200).json(produto);
+    } catch (error) {
+        console.error(error);
+        res.status(500).json(error);
+    }
+};
+
 exports.alterarProdutoPeloNome = async(req, res) => {
     const{nomeNovo, preco, descricao, categoria, status, nome} = req.body;
 
