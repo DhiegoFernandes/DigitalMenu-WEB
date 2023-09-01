@@ -3,13 +3,18 @@ const connection = require('../connection/connection');
 const produtoModel = {
     criarProduto: async (nome, preco, descricao, categoria) => {
         try {
-            const sql = 'INSERT INTO produto (nome, preco, descricao, id_categoria, status) ' +
-                'VALUES (?, ?, ?, (SELECT idcategoria FROM categoria WHERE nome = ?), DEFAULT)';
-            await connection.execute(sql, [nome, preco, descricao, categoria.nomeCategoria]);
+            const sql = 'INSERT INTO produto (nome, preco, descricao, id_categoria) '
+            +'SELECT ?, ?, ?, c.idcategoria '
+            +'FROM categoria c '
+            +'WHERE c.nome = ?;'
+           const a = await connection.execute(sql, [nome, preco, descricao, categoria]);
         } catch (error) {
             throw error;
         }
     },
+
+//    'INSERT INTO produto (nome, preco, descricao, id_categoria, status) ' +
+  //              'VALUES (?, ?, ?, (SELECT idcategoria FROM categoria WHERE nome = ?), DEFAULT)';
 
     listarProduto : async() => {
         try {

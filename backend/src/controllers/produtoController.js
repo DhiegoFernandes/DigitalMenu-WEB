@@ -6,8 +6,9 @@ exports.criarPoduto = async(req,res) => {
     const {nome, preco, descricao, categoria} = req.body;
 
     try {
-        const produto = await produtoModel.criarProduto(nome,preco,descricao,categoria.nomeCategoria);
-        res.status(201).json({success : 'Produto adicionado com sucesso'});
+        const produto = await produtoModel.criarProduto(nome,preco,descricao,categoria);
+        console.log(produto);
+        res.status(201).json(produto);
     } catch (error) {
         console.error(error);
         res.status(500).json(error);
