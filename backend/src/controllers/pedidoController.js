@@ -110,8 +110,13 @@ exports.atualizarPedidoVazio = async(req, res) => {
     const {idpedido} = req.body;
 
     try {
-        const pedido = await pedidoModel.atualizarPedidoVazio(idpedido);
-        res.status(200).json(pedido);
+            const verificaStatus = await pedidoModel.verificaStatus(idpedido);
+        if(verificaStatus === true){
+            res.status(200).json({message : 'Este pedido ja esta encerrado'});
+        }else{
+            const pedido = await pedidoModel.atualizarPedidoVazio(idpedido);
+            res.status(200).json(pedido);
+        }
     } catch (error) {
         console.error(error);
         res.status(500).json(error);

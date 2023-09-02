@@ -131,7 +131,7 @@ const pedidoModel = {
 
     atualizaPedidoItemAlterado : async(numeroPedido1, numeroPedido2) => {
         try {
-            const sql = await connection.execute(
+            const [rows, fields] = await connection.execute(
                 'UPDATE pedido p INNER JOIN item i ON p.idpedido = i.id_pedido '
                 + 'SET p.total = IFNULL((SELECT SUM(i.subtotal) '
                 + 'FROM item i '
@@ -145,14 +145,30 @@ const pedidoModel = {
         }
     },
 
+    verificaStatus : async(idpedido) => {
+        try {
+            const [rows] = await connection.execute(
+                'SELECT status FROM pedido WHERE idpedido = ?;',
+                [idpedido]
+            );
+            if (rows.length > 0 && rows[0].status === 'ENCERRADO') {
+                return true;
+            }else{
+                return false;
+            }    
+        } catch (error) {
+            throw error;
+        }
+    },
+
     atualizarPedidoVazio : async(idpedido) => {
         try {
             const sql = await connection.execute(
-                'UPDATE pedido '
-                +'SET status = \'encerrado\' '
-                +'WHERE idpedido = ?;',
-                [idpedido]
-            );
+                    'UPDATE pedido '
+                    +'SET status = \'encerrado\' '
+                    +'WHERE idpedido = ?;',
+                    [idpedido]
+                );
         } catch (error) {
             throw error;
         }
@@ -182,6 +198,6 @@ const pedidoModel = {
             throw error;
         }
     }
-}
+};
 
 module.exports = pedidoModel;
