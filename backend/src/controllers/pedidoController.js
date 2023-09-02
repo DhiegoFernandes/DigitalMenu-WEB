@@ -49,10 +49,10 @@ exports.listarPedidoPorStatus = async(req, res) => {
 };
 
 exports.listarProdutoPorFaixaDePreco = async(req, res) => {
-    const{data} = req.body;
+    const{valorInicial, valorFinal} = req.body;
 
     try {
-        const pedido = await pedidoModel.listarProdutoPorFaixaDePreco(data);
+        const pedido = await pedidoModel.listarProdutoPorFaixaDePreco(valorInicial, valorFinal);
         res.status(200).json(pedido);
     } catch (error) {
         console.error(error);
