@@ -53,7 +53,7 @@ exports.listarPorStatus = async(req, res) =>{
         res.json(mesas);
     } catch (error) {
         console.error(error);
-        res.status(500).json(error);;
+        res.status(500).json(error);
     }
 };
 
