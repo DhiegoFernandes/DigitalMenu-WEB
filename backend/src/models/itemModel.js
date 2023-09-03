@@ -1,10 +1,11 @@
 const connection = require('../connection/connection');
 
 const itemModel = {
-    adicionaItem : async( id_pedido,id_produto,qtde, subtotal, observacao) =>{
+    adicionaItem : async( id_pedido, id_produto,qtde, observacao) =>{
         try {
-            const sql = 'INSERT INTO item (id_pedido, id_produto, qtde, subtotal, observacao) VALUES (?, ?, ?,?,?)';
-            await connection.execute(sql, [id_pedido, id_produto, qtde,subtotal,observacao]);
+            const sql = 'insert into item values(default, ? , ?, ?, '
+               + '(select preco from produto where idproduto = id_produto) * qtde ,? ,default,default);'
+            await connection.execute(sql, [id_pedido, id_produto, qtde,observacao]);
         } catch (error) {
             throw error;
         }
