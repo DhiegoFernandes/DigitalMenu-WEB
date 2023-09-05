@@ -1,24 +1,29 @@
 const express = require('express');
 const UserModel = require('../models/userModel');
 const connection = require('../connection/connection');
+const jwt = require('jsonwebtoken');
+const secretKey = 'chave'; 
 
-exports.login = async( req, res) => {
-    const { nome, senha} = req.body;
-
-    try{
-
-        const user = await UserModel.autenticar(nome, senha);
-
-        if(user.length > 0){
-            res.status(200).json({message : 'Login bem-sucedido'});
-        }else{
-        res.status(401).json({error : 'Credenciais invalidas'})
-        }
-    }catch(err){
-        console.error('Erro ao autenticar',err);
-        res.status(500).json({error : 'Erro ao autenticar usuario'});
+exports.login = async (req, res) => {
+    const { nome, senha } = req.body;
+  
+    try {
+      const user = await UserModel.autenticar(nome, senha);
+  
+      if (user.length > 0) {
+        // Se as credenciais estiverem corretas, ira gerar o token
+        const token = jwt.sign({ username: nome }, secretKey, { expiresIn: '1h' });
+  
+        // Envie o token JWT como parte da resposta
+        res.status(200).json({ message: 'Login bem-sucedido', token: token });
+      } else {
+        res.status(401).json({ error: 'Credenciais inválidas' });
+      }
+    } catch (err) {
+      console.error('Erro ao autenticar', err);
+      res.status(500).json({ error: 'Erro ao autenticar usuário' });
     }
-};
+  };
 
 exports.register = async (req, res) => {
     const {nome, senha, tipoAcesso} = req.body;
