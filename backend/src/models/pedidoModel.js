@@ -1,4 +1,4 @@
-const connection = require('../connection/connection');
+const connection = require('../connection/connections');
 
 const pedidoModel = {
     adicionarPedido : async(idMesa) => {

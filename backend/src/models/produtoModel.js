@@ -1,4 +1,4 @@
-const connection = require('../connection/connection');
+const connection = require('../connection/connections');
 
 const produtoModel = {
     criarProduto: async (nome, preco, descricao, categoria) => {

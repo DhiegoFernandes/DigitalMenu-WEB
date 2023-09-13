@@ -5,8 +5,8 @@ const UserController = require('../controllers/userController');
 router.get('/', (req,res) => {res.status(200).send("Bem-vindo à minha API")});
 
 // login e registros:
-router.use('/login', UserController.login);
-router.post('/register', UserController.register);
+// router.use('/login', UserController.login);
+// router.post('/register', UserController.register);
 
 // Rotas protegidas que requerem token JWT válido:
 //router.use(token); // Aplicando o middleware JWT a partir deste ponto

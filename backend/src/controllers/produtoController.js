@@ -1,6 +1,6 @@
 const express = require('express');
 const produtoModel = require('../models/produtoModel');
-const connection = require('../connection/connection');
+const connection = require('../connection/connections');
 
 exports.criarPoduto = async(req,res) => {
     const {nome, preco, descricao, categoria} = req.body;
