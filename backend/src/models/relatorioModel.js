@@ -1,13 +1,15 @@
-const connection = require('../connection/connections');
+const {createConnection} = require('../connection/connections');
 
 const relatorioModel = {
     totalPedidos : async() => {
         try{
-            const [rows, fields] = await connection.execute( 
+            const connection = await createConnection();
+            const [rows, fields] = await connection.query( 
                 'SELECT COUNT(*) AS Total_Pedidos, SUM(total) AS Total_Vendido, AVG(total) AS Media_Pedido '
                 + 'FROM pedido;'
             );
-                return rows;
+            await connection.end();
+            return rows;
         }catch(erro){
         throw erro;
         }
@@ -15,7 +17,8 @@ const relatorioModel = {
 
     listarItemQtdeVendidaPorItem: async (idproduto) => {
         try {
-            const [rows, fields] = await connection.execute(
+            const connection = await createConnection();
+            const [rows, fields] = await connection.query(
                 'SELECT p.idproduto, p.nome, p.preco, SUM(i.qtde) AS qtdeTotal, SUM(i.subtotal) AS valorTotal '
                 +'FROM item i '
                 +'INNER JOIN produto p ON i.id_produto = p.idproduto '
@@ -23,6 +26,7 @@ const relatorioModel = {
                 +'GROUP BY p.idproduto, p.nome, p.preco;',
                 [idproduto] 
             );
+            await connection.end();
             return rows;
         } catch (error) {
         throw error;
@@ -31,7 +35,8 @@ const relatorioModel = {
 
     listarItensMaisVendidos : async() => {
         try {
-            const[rows, fields] = await connection.execute(
+            const connection = await createConnection();
+            const[rows, fields] = await connection.query(
                 'SELECT p.idproduto, p.nome, p.preco, SUM(i.qtde) AS qtdeTotal, SUM(i.subtotal) AS valorTotal '
                 + 'FROM item i '
                 + 'INNER JOIN produto p '
@@ -39,6 +44,7 @@ const relatorioModel = {
                 + 'GROUP BY p.nome '
                 + 'ORDER BY SUM(i.qtde) DESC;'
             );
+            await connection.end();
             return rows;
         } catch (error) {
             throw error;
@@ -47,12 +53,14 @@ const relatorioModel = {
 
     totalPedidosPorMes : async(mes) => {
         try {
-            const[rows, fields] = await connection.execute(
+            const connection = await createConnection();
+            const[rows, fields] = await connection.query(
                 'SELECT COUNT(*) AS Total_Pedidos, SUM(total) AS Total_Vendido, AVG(total) AS Media_Pedido '
                 + 'FROM pedido '
                 + 'WHERE MONTH(data) = ?;',
                 [mes]
             );
+            await connection.end();
             return rows;
         } catch (error) {
             throw error;
@@ -61,7 +69,8 @@ const relatorioModel = {
 
     listarItensPorPedidoAgrupado : async(id_pedido) => {
         try {
-            const [rows, fields] = await connection.execute(
+            const connection = await createConnection();
+            const [rows, fields] = await connection.query(
                 'SELECT p.nome, p.preco, SUM(i.qtde) AS qtde, (p.preco*SUM(i.qtde)) AS subtotal '
                 + 'FROM item i '
                 + 'INNER JOIN produto p '
@@ -73,6 +82,7 @@ const relatorioModel = {
             if (rows.length === 0){
                 return null;
             }
+            await connection.end();
             return rows;
         } catch (error) {
             throw error;
@@ -81,9 +91,11 @@ const relatorioModel = {
 
     calcularGorjeta : async() => {
         try {
-            const[rows, fields] = await connection.execute(
+            const connection = await createConnection();
+            const[rows, fields] = await connection.query(
                 'SELECT DATE_FORMAT(DATA, \'%m/%Y\') AS MES_ANO,SUM(TOTAL * 0.1) AS GORGETA FROM PEDIDO GROUP BY DATE_FORMAT(DATA, \'%m/%Y\');'
             );
+            await connection.end();
             return rows;
         } catch (error) {
             throw error;
