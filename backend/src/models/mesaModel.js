@@ -1,10 +1,12 @@
-const connection = require('../connection/connections');
+const {createConnection} = require('../connection/connections');
 
 const mesaModel = {
     criarMesa : async(idMesa) =>{
         try{
+            const connection = await createConnection();
             const sql = 'INSERT INTO mesa (idMesa,status) VALUES (?,default)'
-            await connection.execute(sql,[idMesa]);
+            await connection.query(sql,[idMesa]);
+            await connection.end();
         }catch(err){
             throw err;    
         }
@@ -12,9 +14,11 @@ const mesaModel = {
 
     listarTodasMesas : async() =>{
         try{
-            const [rows,fields] = await connection.execute(
+            const connection = await createConnection();
+            const [rows,fields] = await connection.query(
                 'SELECT idmesa, status FROM mesa;'
             );
+            await connection.end();
             return rows;    
         }catch(err){
             throw err; 
@@ -23,10 +27,12 @@ const mesaModel = {
 
     checkMesa : async (idMesa) => {
         try {
+            const connection = await createConnection();
             const [rows,fields] = await connection.execute( 
                 'SELECT idmesa, status FROM mesa WHERE idmesa = ? AND status = \'ATIVADO\';',
                 [idMesa]    
             );
+            await connection.end();
             if(rows.length > 0){
             return rows
             }else{ 
@@ -39,10 +45,12 @@ const mesaModel = {
 
     listarTodasMesasPorStatus : async(status) =>{
         try{
-            const [rows,fields] = await connection.execute(
+            const connection = await createConnection();
+            const [rows,fields] = await connection.query(
                 'SELECT idmesa, status FROM mesa WHERE status = ?;',
                 [status]
             );
+            await connection.end();
             if(rows.length > 0){
             return rows;
             }else return 'Status nao encontrado'; 
@@ -53,10 +61,12 @@ const mesaModel = {
     
     listarMesaPorId : async(id) =>{
         try {
-            const [rows,fields] = await connection.execute(
+            const connection = await createConnection();
+            const [rows,fields] = await connection.query(
                 'SELECT idmesa, status FROM mesa WHERE idmesa = ?;',
                 [id]
             );
+            await connection.end();
             if(rows.length > 0){
                 return rows[0];
             }else return null;
@@ -67,8 +77,10 @@ const mesaModel = {
     
     atualizarMesa : async(idNovo,status,id) =>{
         try {
+            const connection = await createConnection();
             const sql = 'UPDATE mesa SET idmesa = ?, status = ? WHERE idmesa = ?';
-            await connection.execute(sql,[idNovo,status,id])
+            await connection.query(sql,[idNovo,status,id]);
+            await connection.end();
         }catch (err) {
             throw err;
         }
@@ -76,12 +88,14 @@ const mesaModel = {
     
     deletarMesa: async (id) => {
         try{
+            const connection = await createConnection();
             const sql = 'UPDATE mesa SET status = \'DESATIVADO\' WHERE idmesa = ?;';
-            await connection.execute(sql, [id]);
+            await connection.query(sql, [id]);
+            await connection.end();
         }catch(err){
             throw err;
         }
     }
-};
+}
 
 module.exports = mesaModel;

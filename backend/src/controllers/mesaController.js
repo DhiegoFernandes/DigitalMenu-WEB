@@ -68,24 +68,25 @@ exports.listarPorId = async(req, res) =>{
     }
 };
 
-exports.atualizarMesa = async(req, res) =>{
-    const{id} = req.params;
-    const{idNovo,status} = req.body;
+exports.atualizarMesa = async (req, res) => {
+    const { id } = req.params;
+    const { idNovo, status } = req.body;
 
     try {
         const buscarMesa = await mesaModel.listarMesaPorId(id);
-        console.log('buscar'+buscarMesa)
-        if(!buscarMesa){
-            res.status(404).json({error:'Mesa nao encontrada'});
-            return error
+
+        if (!buscarMesa) {
+            return res.status(404).json({ error: 'Mesa não encontrada' });
         }
-        const mesa = await mesaModel.atualizarMesa(idNovo,status,id);
-        console.log(mesa + "mesa")
+
+        const mesa = await mesaModel.atualizarMesa(idNovo, status, id);
+
         res.status(204).json(mesa);
     } catch (error) {
-        res.status(500).json(error);   
+        res.status(500).json(error);
     }
 };
+
 
 exports.desativarMesa =  async(req, res) =>{
     const{id} = req.params;
