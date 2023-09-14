@@ -1,12 +1,14 @@
-const connection = require('../connection/connections');
+const {createConnection} = require('../connection/connections');
 
 const pedidoModel = {
     adicionarPedido : async(idMesa) => {
         try{
+            const connection = await createConnection();
         const sql = 
                 'INSERT INTO pedido (idpedido, id_mesa, total, data, status) '
                 + 'VALUES (DEFAULT, ?, DEFAULT, DEFAULT, DEFAULT);'
-                await connection.execute(sql, [idMesa]);
+                await connection.query(sql, [idMesa]);
+                await connection.end();
         }catch(erro){
         throw erro;
         }
@@ -14,11 +16,13 @@ const pedidoModel = {
 
     listarPedido : async() => {
         try {
-            const [rows, fields] = await connection.execute(
+            const connection = await createConnection();
+            const [rows, fields] = await connection.query(
                 'SELECT idpedido, id_mesa, total, DATE_FORMAT(data, \'%d/%m/%Y\') AS data, '
                 + 'DATE_FORMAT(data, \'%H:%i:%s\') AS horario, status '
                 + 'FROM pedido;'
             );
+            await connection.end();
             return rows;
         } catch (error) {
             throw error;
@@ -27,13 +31,15 @@ const pedidoModel = {
 
     listarPedidoPorMesa : async(idMesa) => {
         try {
-            const[rows, fields] = await connection.execute(
+            const connection = await createConnection();
+            const[rows, fields] = await connection.query(
                 'SELECT idpedido, id_mesa, total, DATE_FORMAT(data,\'%d/%m/%Y\') AS data, '
                 + 'DATE_FORMAT(data,\'%H:%i:%s\') AS horario, status '
                 + 'FROM pedido '
                 + 'WHERE id_mesa = ?;',
                 [idMesa]
             );
+            await connection.end();
             return rows;
         } catch (error) {
             throw error;
@@ -42,13 +48,15 @@ const pedidoModel = {
 
     listarPedidoPorStatus : async(status) => {
         try {
-            const [rows, fields] = await connection.execute(
+            const connection = await createConnection();
+            const [rows, fields] = await connection.query(
                 'SELECT idpedido, id_mesa, total, DATE_FORMAT(data,\'%d/%m/%Y\') AS data, '
                 + 'DATE_FORMAT(data,\'%H:%i:%s\') AS horario, status '
                 + 'FROM pedido '
                 + 'WHERE status = ?',
                 [status]
             );
+            await connection.end();
             return rows;
         } catch (error) {
             throw error;
@@ -57,7 +65,8 @@ const pedidoModel = {
 
     listarProdutoPorFaixaDePreco : async(valorInicial,  valorFinal) => {
         try{
-            const [rows, fields] = await connection.execute(
+            const connection = await createConnection();
+            const [rows, fields] = await connection.query(
                     'SELECT idpedido, id_mesa, total, DATE_FORMAT(data, \'%d/%m/%Y\') AS data, '
                     + 'DATE_FORMAT(data,\'%H:%i:%s\') AS horario, status '
                     + 'FROM pedido '
@@ -65,6 +74,7 @@ const pedidoModel = {
                     + 'ORDER BY total',
                     [valorInicial, valorFinal]
             );
+            await connection.end();
             return rows;
         }catch(error){
             throw error;
@@ -73,13 +83,15 @@ const pedidoModel = {
 
     listarProdutoPorDia : async(data) => {
         try {
-            const [rows, fields] = await connection.execute(
+            const connection = await createConnection();
+            const [rows, fields] = await connection.query(
                 'SELECT idpedido, id_mesa, total, DATE_FORMAT(data, \'%d/%m/%Y\') AS data, '
                 + 'DATE_FORMAT(data,\'%H:%i:%s\') AS horario, status '
                 + 'FROM pedido '
                 + 'WHERE DATE_FORMAT(data, \'%d/%m/%Y\') = ?;',
                 [data]
             );
+            await connection.end();
             return rows;
         } catch (error) {
             throw error;
@@ -88,13 +100,15 @@ const pedidoModel = {
 
     listarProdutoPorFaixaDia : async(dataInicial, dataFinal) => {
         try {
-            const [rows, fields] = await connection.execute(
+            const connection = await createConnection();
+            const [rows, fields] = await connection.query(
                 'SELECT idpedido, id_mesa, total, DATE_FORMAT(data, \'%d/%m/%Y\') AS data, '
                 + 'DATE_FORMAT(data,\'%H:%i:%s\') AS horario, status '
                 + 'FROM pedido '
                 + 'WHERE DATE_FORMAT(data, \'%d/%m/%Y\') >= ? AND DATE_FORMAT(data, \'%d/%m/%Y\') <= ?;',
                 [dataInicial, dataFinal]
             );
+            await connection.end();
             return rows;
         } catch (error) {
             throw error;
@@ -103,11 +117,13 @@ const pedidoModel = {
 
     listarVendasPorDia : async() => {
         try {
-            const [rows, fields] = await connection.execute(
+            const connection = await createConnection();
+            const [rows, fields] = await connection.query(
                 'SELECT sum(total) AS total, DATE_FORMAT(data, \'%d/%m/%Y\') AS Data '
                 +'FROM pedido '
                 +'GROUP BY DATE_FORMAT(data, \'%d/%m/%Y\');',
             );
+            await connection.end();
             return rows;
         } catch (error) {
             throw error;
@@ -116,7 +132,8 @@ const pedidoModel = {
 
     atualizaPedido : async(idPedidoNovo, status, idPedio) => {
         try {
-            const sql = await connection.execute(
+            const connection = await createConnection();
+            const sql = await connection.query(
                 'UPDATE pedido p INNER JOIN item i '
                 + 'ON p.idpedido = i.id_pedido '
                 + 'SET p.total = (SELECT SUM(subtotal) '
@@ -124,6 +141,7 @@ const pedidoModel = {
                 + 'WHERE p.idpedido = ? AND i.status = \'confirmado\';',
                 [idPedidoNovo, status, idPedio]
             );
+            await connection.end();
         } catch (error) {
             throw error;
         }
@@ -131,7 +149,8 @@ const pedidoModel = {
 
     atualizaPedidoItemAlterado : async(numeroPedido1, numeroPedido2) => {
         try {
-            const [rows, fields] = await connection.execute(
+            const connection = await createConnection();
+            const [rows, fields] = await connection.query(
                 'UPDATE pedido p INNER JOIN item i ON p.idpedido = i.id_pedido '
                 + 'SET p.total = IFNULL((SELECT SUM(i.subtotal) '
                 + 'FROM item i '
@@ -139,6 +158,7 @@ const pedidoModel = {
                 + 'WHERE p.idpedido = ?;',
                 [numeroPedido1, numeroPedido2]
             );
+            await connection.end();
             return rows;
         } catch (error) {
             throw error;
@@ -147,7 +167,8 @@ const pedidoModel = {
 
     verificaStatus : async(idpedido) => {
         try {
-            const [rows] = await connection.execute(
+            const connection = await createConnection();
+            const [rows] = await connection.query(
                 'SELECT status FROM pedido WHERE idpedido = ?;',
                 [idpedido]
             );
@@ -155,7 +176,8 @@ const pedidoModel = {
                 return true;
             }else{
                 return false;
-            }    
+            }  
+            await connection.end();  
         } catch (error) {
             throw error;
         }
@@ -163,12 +185,14 @@ const pedidoModel = {
 
     atualizarPedidoVazio : async(idpedido) => {
         try {
-            const sql = await connection.execute(
+            const connection = await createConnection();
+            const sql = await connection.query(
                     'UPDATE pedido '
                     +'SET status = \'encerrado\' '
                     +'WHERE idpedido = ?;',
                     [idpedido]
                 );
+                await connection.end();
         } catch (error) {
             throw error;
         }
@@ -176,12 +200,14 @@ const pedidoModel = {
 
     cancelarPedido : async(status, numeroPedido) => {
         try {
-            const sql = await connection.execute(
+            const connection = await createConnection();
+            const sql = await connection.query(
                 'UPDATE pedido '
                 +'SET status = ? '
                 +'WHERE idpedido = ?;',
                 [status, numeroPedido]
             );
+            await connection.end();
         } catch (error) {
             throw error;
         }
@@ -189,11 +215,13 @@ const pedidoModel = {
 
     deletarPedido : async(idPedido) => {
         try {
-            const sql = await connection.execute(
+            const connection = await createConnection();
+            const sql = await connection.query(
                 'DELETE FROM pedido '
                 +'WHERE idpedido = ?;',
                 [idPedido]
             );
+            await connection.end();
         } catch (error) {
             throw error;
         }
