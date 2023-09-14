@@ -1,3 +1,185 @@
-.titulo{
-    color: blue;
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400&family=Roboto:wght@100;300;400&display=swap");
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
+
+.fundo {
+  width: 100%;
+}
+
+body {
+  font-family: "Open Sans", sans-serif;
+  color: #000;
+  line-height: 1.6;
+  background: #ccc;
+}
+
+ul {
+  list-style: none;
+}
+
+header {
+  margin-bottom: 35px;
+}
+
+footer {
+  margin-top: 0px;
+}
+
+main {
+  padding: 40px;
+  height: 100%;
+}
+
+/*  HEADER */
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #333;
+  color: aliceblue;
+  opacity: 0.8;
+  width: 100%;
+  height: 70px;
+  position: fixed;
+  top: 0px;
+}
+
+.navbar nav {
+  padding: 10px;
+  font-size: 20px;
+}
+
+.navbar nav:hover {
+  color: darkcyan;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+#navbar h1 {
+  padding: 10px;
+  padding-left: 60px;
+}
+
+#navbar li {
+  padding: 20px;
+}
+
+/* MAIN  */
+
+#tela-login {
+  margin: 80px;
+
+}
+
+.tela-login .row {
+  display: flex;
+  padding: 10px;
+}
+
+.tela-login .row .column-1 {
+  width: 50%;
+  height: 500px;
+}
+
+.tela-login .row .column-1 img {
+  width: 100%;
+  height: 100%;
+  
+}
+
+.tela-login .row .column-2 {
+  background: #333;
+  color: aliceblue;
+  width: 40%;
+  height: 500px;
+  opacity: 90%;
+
+}
+
+.tela-login .row .column-2 h1 {
+  padding: 20px;
+  margin: 20px 0 20px 0;
+}
+
+.tela-login .row .column-2 p {
+  padding: 20px;
+  text-align: left;
+  margin-left: 15px;
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+
+/* Footer */
+footer {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: #333;
+  position: absolute;
+  width: 100%;
+  bottom: 0;
+  left: 0;
+  padding: 5px;
+  height: 85px;
+  color: aliceblue;
+}
+
+footer a {
+  color: aliceblue;
+  padding: 20px;
+}
+
+footer a:hover {
+  color: #d3a741;
+}
+
+/* utilities */
+
+.borda {
+    border: 1px solid black;
+  }
+  
+  .borda-red {
+    border: 1px solid red;
+  }
+  
+  .flex-items {
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    align-items: auto;
+  }
+  
+  .btn-primary {
+    font-size: 30px;
+    font-weight: bold;
+    padding: 15px;
+    margin-top: 50px;
+    width: 40%;
+    border-radius: 10px;
+    background-color: orange;
+
+    text-decoration-line: none;
+    text-decoration: none;
+  }
+
+.direciona{
+    text-decoration: none;
+    color: white;
+
+}
+  
+  .btn-primary:hover {
+    background-color: #d3a741;
+    cursor: pointer;
+  }
+  
+  .color-secondary {
+    color: #d3a741;
+  }
