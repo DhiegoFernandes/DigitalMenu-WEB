@@ -2,15 +2,15 @@ import { Link } from "react-router-dom";
 import './Home.css';
 
 import fundo from "./images/fundo.png";
-
+/* 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faCoffee } from '@fortawesome/free-solid-svg-icons';
+import { faCoffee } from '@fortawesome/free-solid-svg-icons'; */
 
 
 
 function Home() {
 
-  const element = <FontAwesomeIcon icon={faCoffee} />;
+ /*  const element = <FontAwesomeIcon icon={faCoffee} />; */
 
   return (
     <>
@@ -48,7 +48,7 @@ function Home() {
 
       <footer className="borda">
         <div className="social-footer">
-          <a href=""><i className="fa-2x">{element}</i></a>
+          <a href=""><i className="fa-2x"></i></a>
           <a href=""><i className="fab fa-instagram fa-2x"></i></a>
           <a href=""><i className="fab fa-twitter fa-2x"></i></a>
         </div>
