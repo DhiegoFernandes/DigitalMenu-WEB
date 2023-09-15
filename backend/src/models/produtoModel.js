@@ -1,13 +1,15 @@
-const connection = require('../connection/connection');
+const {createConnection} = require('../connection/connections');
 
 const produtoModel = {
     criarProduto: async (nome, preco, descricao, categoria) => {
         try {
+            const connection = await createConnection();
             const sql = 'INSERT INTO produto (nome, preco, descricao, id_categoria) '
             +'SELECT ?, ?, ?, c.idcategoria '
             +'FROM categoria c '
             +'WHERE c.nome = ?;'
-            const a = await connection.execute(sql, [nome, preco, descricao, categoria]);
+            const a = await connection.query(sql, [nome, preco, descricao, categoria]);
+            await connection.end();
         } catch (error) {
             throw error;
         }
@@ -15,12 +17,14 @@ const produtoModel = {
 
     listarProduto : async() => {
         try {
-            const [rows, fields] = await connection.execute( 
+            const connection = await createConnection();
+            const [rows, fields] = await connection.query( 
             'SELECT p.idproduto, p.nome, c.nome, p.preco, p.descricao, p.status, p.id_categoria '
             + 'FROM produto p '
             + 'INNER JOIN categoria c '
             + 'ON p.id_categoria = c.idcategoria;'
             );
+            await connection.end();
             return rows;
         } catch (error) {
             throw error;
@@ -29,13 +33,15 @@ const produtoModel = {
 
     listarProdutoAtivo : async() => {
         try {
-            const [rows,fields] = await connection.execute(
+            const connection = await createConnection();
+            const [rows,fields] = await connection.query(
                 'SELECT p.idproduto, p.nome, c.nome, p.preco, p.descricao, p.status, p.id_categoria '
                 + 'FROM produto p '
                 + 'INNER JOIN categoria c '
                 + 'ON p.id_categoria = c.idcategoria '
                 + 'WHERE p.status = \'ativado\';'
             );
+            await connection.end();
             return rows;
         } catch (error) {
             throw error;
@@ -44,7 +50,8 @@ const produtoModel = {
 
     listarProdutoPorNome : async(nome) => {
         try {
-            const [rows, fields] = await connection.execute(
+            const connection = await createConnection();
+            const [rows, fields] = await connection.query(
                 'SELECT p.idproduto, p.nome, c.nome, p.preco, p.descricao, p.status, p.id_categoria '
                 + 'FROM produto p '
                 + 'INNER JOIN categoria c '
@@ -52,6 +59,7 @@ const produtoModel = {
                 + 'WHERE p.nome LIKE CONCAT(\'%\',?,\'%\');',
                 [nome]
             );
+            await connection.end();
             return rows;
         } catch (error) {
             throw error;
@@ -60,7 +68,8 @@ const produtoModel = {
 
     listarPorStatus : async(status) => {
         try {
-            const [rows, fields] = await connection.execute(
+            const connection = await createConnection();
+            const [rows, fields] = await connection.query(
                 'SELECT p.idproduto, p.nome, c.nome, p.preco, p.descricao, p.status, p.id_categoria '
                 + 'FROM produto p '
                 + 'INNER JOIN categoria c '
@@ -68,6 +77,7 @@ const produtoModel = {
                 + 'WHERE p.status = ?;',
                 [status]
             );
+            await connection.end();
             return rows
         } catch (error) {
             throw error;
@@ -76,7 +86,8 @@ const produtoModel = {
 
     listarProdutoPorFaixaDePreco : async(valorInicial, valorFinal) =>{
         try {
-            const [rows, field] = await connection.execute(
+            const connection = await createConnection();
+            const [rows, field] = await connection.query(
                 'SELECT p.idproduto, p.nome, c.nome, p.preco, p.descricao, p.status, p.id_categoria '
                 + 'FROM produto p '
                 + 'INNER JOIN categoria c '
@@ -85,6 +96,7 @@ const produtoModel = {
                 + 'ORDER BY p.preco;',
                 [valorInicial,valorFinal]
             );
+            await connection.end();
             return rows;
         } catch (error) {
             throw error;
@@ -93,7 +105,8 @@ const produtoModel = {
 
     listarProdutoPorDescricao : async(descricao) => {
         try {
-            const [rows, fields] = await connection.execute(
+            const connection = await createConnection();
+            const [rows, fields] = await connection.query(
             'SELECT p.idproduto, p.nome, c.nome, p.preco, p.descricao, p.status, p.id_categoria '
             + 'FROM produto p '
             + 'INNER JOIN categoria c '
@@ -101,6 +114,7 @@ const produtoModel = {
             + 'WHERE p.descricao LIKE CONCAT(\'%\', ?, \'%\');',
                 [descricao]
             );
+            await connection.end();
             return rows;
         } catch (error) {
             throw error;
@@ -109,7 +123,8 @@ const produtoModel = {
 
     listarProdutoPorCategoria : async(categoria) => {
         try {
-            const [rows, fields] = await connection.execute(
+            const connection = await createConnection();
+            const [rows, fields] = await connection.query(
                 'SELECT p.idproduto, p.nome, c.nome, p.preco, p.descricao, p.status, p.id_categoria '
                 + 'FROM produto p '
                 + 'INNER JOIN categoria c '
@@ -117,6 +132,7 @@ const produtoModel = {
                 + 'WHERE c. nome = ?;',
                 [categoria]
             );
+            await connection.end();
             return rows
         } catch (error) {
             throw error;
@@ -125,6 +141,7 @@ const produtoModel = {
 
     alterarProdutoPeloNome : async(nomeNovo, preco, descricao, categoria, status, nome) => {
         try {
+            const connection = await createConnection();
             const sql = 
             'UPDATE produto SET '
             + 'nome = ?, '
@@ -133,7 +150,8 @@ const produtoModel = {
             + 'id_categoria = (SELECT idcategoria FROM categoria WHERE nome = ?), '
             + 'status = ? '
             + 'WHERE nome = ?';
-            await connection.execute(sql,[nomeNovo,preco,descricao,categoria,status,nome]);
+            await connection.query(sql,[nomeNovo,preco,descricao,categoria,status,nome]);
+            await connection.end();
         } catch (error) {
             throw error;
         }
@@ -141,11 +159,13 @@ const produtoModel = {
 
     deletarProduto : async(nome) => {
         try {
+            const connection = await createConnection();
             const sql = 
             'UPDATE produto '
             + 'SET status = \'desativado\' '
             + 'WHERE nome = ?;'
-            await connection.execute(sql,[nome]);
+            await connection.query(sql,[nome]);
+            await connection.end();
         } catch (error) {
             throw error;
         }

@@ -128,3 +128,6 @@ dist
 .yarn/build-state.yml
 .yarn/install-state.gz
 .pnp.*
+/backend/src/connection/connections.js
+/backend/src/connection/DdigiCertGlobalRootCA.crt.pem
+/backend/src/middleware/JWTToken.js

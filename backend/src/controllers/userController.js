@@ -1,6 +1,6 @@
 const express = require('express');
 const UserModel = require('../models/userModel');
-const connection = require('../connection/connection');
+const connection = require('../connection/connections');
 const jwt = require('jsonwebtoken');
 const secretKey = 'chave'; 
 

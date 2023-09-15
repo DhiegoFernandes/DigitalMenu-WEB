@@ -1,6 +1,6 @@
 const express = require('express');
 const pedidoModel = require('../models/pedidoModel');
-const connection = require('../connection/connection');
+const connection = require('../connection/connections');
 
 exports.adicionaPedido = async(req,res) => {
     const {idMesa} = req.body;
