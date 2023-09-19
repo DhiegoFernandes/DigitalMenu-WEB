@@ -1,162 +1,142 @@
-
-@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400&family=Roboto:wght@100;300;400&display=swap");
-
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-  }
-
-  
-  body {
-    font-family: "Open Sans", sans-serif;
-    color: #000;
-    line-height: 1.6;
-    background: #ccc;
-  }
-  
-  ul {
-    list-style: none;
-  }
-  
-  header {
-    margin-bottom: 35px;
-  }
-  
-  footer {
-    margin-top: 0px;
-  }
-  
-  main {
-    padding: 40px;
-    height: 100%;
-  }
-
 /*  HEADER */
 .navbar {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    background-color: #333;
-    color: aliceblue;
-    opacity: 0.8;
-    width: 100%;
-    height: 70px;
-    position: fixed;
-    top: 0px;
-  }
-  
-  .navbar nav {
-    padding: 10px;
-    font-size: 20px;
-  }
-  
-  .navbar nav:hover {
-    color: darkcyan;
-    font-size: 20px;
-    cursor: pointer;
-  }
-  
-  #navbar h1 {
-    padding: 10px;
-    padding-left: 60px;
-  }
-  
-  #navbar li {
-    padding: 20px;
-  }
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: #333;
+  color: aliceblue;
+  opacity: 0.8;
+  width: 100%;
+  height: 70px;
+  position: fixed;
+  top: 0px;
+}
 
-  .color-secondary {
+.navbar nav {
+  padding: 10px;
+  font-size: 20px;
+}
+
+.navbar nav:hover {
+  color: darkcyan;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+#navbar h1 {
+  padding: 10px;
+  padding-left: 60px;
+}
+
+#navbar li {
+  padding: 20px;
+}
+
+.color-secondary {
   color: #d3a741;
 }
+
 /* -----------------   main   ----------- */
 
-.fotodm{
-    display: flex;
-    align-items: center;
-    justify-content: center;
+.fotodm {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
-    margin-top: 5%;
+  margin-top: 5%;
 }
 
 
 .dados {
-    border-radius: 5px;
-    background-color: #f2f2f2;
-    padding: 20px;
+  border-radius: 5px;
+  background-color: #f2f2f2;
+  padding: 20px;
 
-    margin-left: 35%;
-    margin-right: 35%;
-    margin-top: 20px;
-  }
+  margin-left: 35%;
+  margin-right: 35%;
+  margin-top: 20px;
+}
 
-.texto1{
-    text-align: center;
-    margin-bottom: 20px;
+.texto1 {
+  text-align: center;
+  margin-bottom: 20px;
 }
 
 /* input texto */
-input[type=text], select {
-    width: 100%;
-    padding: 12px 20px;
-    margin: 8px 0;
-    display: inline-block;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;
-  }
+input[type=text],
+select {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+
+.senha {
+  display: flex;
+  align-items: center;
+
+  border: none;
+
+}
+
+.olhos {
+  width: 25px;
+  height: 25px;
+
+
+  margin-left: -30px;
+}
+
 /* input senha */
-  input[type=password], select {
-    width: 100%;
-    padding: 12px 20px;
-    margin: 8px 0;
-    display: inline-block;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;
-  }
-  
+input[type=password],
+select {
+  width: 100%;
+  padding: 12px 20px;
+  margin: 8px 0;
+  display: inline-block;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
 /*   input entrar */
-  input[type=submit] {
-    width: 100%;
-    background-color: #4CAF50;
-    color: white;
-    padding: 14px 20px;
-    margin: 8px 0;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-  }
-  /* mouse sobre entrar */
-  input[type=submit]:hover {
-    background-color: yellowgreen;
-  }
+input[type=submit] {
+  width: 100%;
+  background-color: #4CAF50;
+  color: white;
+  padding: 14px 20px;
+  margin: 8px 0;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
 
-/* ------------------ footer  ---------------- */
-  footer {
-    position: absolute;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    background: #333;
-    position: absolute;
-    width: 100%;
-    bottom: 0;
-    left: 0;
-    padding: 5px;
-    height: 85px;
-    color: aliceblue;
-  }
-  
-  footer a {
-    color: aliceblue;
-    padding: 20px;
-  }
-  
-  footer a:hover {
-    color: #d3a741;
-  }
-  
+/* mouse sobre entrar */
+input[type=submit]:hover {
+  background-color: yellowgreen;
+}
 
-  
+
+.btn-entrar {
+  font-size: 30px;
+  font-weight: bold;
+  padding: 10px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  width: 50%;
+  border-radius: 10px;
+  background-color: orange;
+  color: white;
+
+  text-decoration-line: none;
+  text-decoration: none;
+}
+
+.btn-entrar:hover {
+  background-color: #d3a741;
+  cursor: pointer;
+}

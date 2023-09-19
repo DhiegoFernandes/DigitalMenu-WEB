@@ -1,9 +1,16 @@
 @import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400&family=Roboto:wght@100;300;400&display=swap");
 
+
+/* ----  MARCAÇÔES GLOBAIS ---- (alteram todo o front end)*/
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+}
+
+h1{
+  display: flex;
+  justify-content: center;
 }
 
 .fundo {
@@ -32,6 +39,18 @@ footer {
 main {
   padding: 40px;
   height: 100%;
+}
+
+.digitalMenu {
+  color: white;
+  text-decoration: none;
+
+}
+
+.centralizaGlobal{
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 /*  HEADER */
@@ -88,7 +107,7 @@ main {
 .tela-login .row .column-1 img {
   width: 100%;
   height: 100%;
-  
+
 }
 
 .tela-login .row .column-2 {
@@ -142,44 +161,45 @@ footer a:hover {
 /* utilities */
 
 .borda {
-    border: 1px solid black;
-  }
-  
-  .borda-red {
-    border: 1px solid red;
-  }
-  
-  .flex-items {
-    display: flex;
-    text-align: center;
-    justify-content: center;
-    align-items: auto;
-  }
-  
-  .btn-primary {
-    font-size: 30px;
-    font-weight: bold;
-    padding: 15px;
-    margin-top: 50px;
-    width: 40%;
-    border-radius: 10px;
-    background-color: orange;
+  border: 1px solid black;
+}
 
-    text-decoration-line: none;
-    text-decoration: none;
-  }
+.borda-red {
+  border: 1px solid red;
+}
 
-.direciona{
-    text-decoration: none;
-    color: white;
+.flex-items {
+  display: flex;
+  text-align: center;
+  justify-content: center;
+  align-items: auto;
+}
+
+.btn-primary {
+  font-size: 30px;
+  font-weight: bold;
+  padding: 15px;
+  margin-top: 50px;
+  width: 40%;
+  border-radius: 10px;
+  background-color: orange;
+  color: white;
+
+  text-decoration-line: none;
+  text-decoration: none;
+}
+
+.direciona {
+  text-decoration: none;
+  color: white;
 
 }
-  
-  .btn-primary:hover {
-    background-color: #d3a741;
-    cursor: pointer;
-  }
-  
-  .color-secondary {
-    color: #d3a741;
-  }
+
+.btn-primary:hover {
+  background-color: #d3a741;
+  cursor: pointer;
+}
+
+.color-secondary {
+  color: #d3a741;
+}

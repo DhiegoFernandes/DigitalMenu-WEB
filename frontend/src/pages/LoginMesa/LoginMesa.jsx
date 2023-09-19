@@ -24,59 +24,57 @@ function LoginMesa() {
 
       <header>
         <div id="navbar" className="navbar">
-          <h1 className="logo" ><span className="color-secondary">D</span>igital<span
-            className="color-secondary" >M</span>enu
-          </h1>
+          <Link className="digitalMenu" to="/">
+            <h1 className="logo"><span className="color-secondary">D</span>igital <span className="color-secondary">M</span>enu</h1>
+          </Link>
         </div>
       </header>
 
       <div className="mensagem">
-        <h1>RESTAURANTE</h1>
-        <h2>Escolha sua mesa</h2>
+        <h2 className='centralizaGlobal'>RESTAURANTE</h2>
+        <h2 className='centralizaGlobal'>Escolha sua mesa</h2>
       </div>
 
 
       <main className="principal">
         <div className="Formato-mesa">
           <div className="mesas">
-            <p>Mesa</p>
-            <img className="tamanho-img"
-              src={um}  />
+            <p>Mesa1</p>
+            <button className="btn-numero" type="submit" onClick={(e) => autenticacaoMesa(e, 1)}><img className="tamanho-img" src={um} /></button>
           </div>
           <div className="mesas">
-            <p>Mesa</p>
-            <img className="tamanho-img"
-              src={dois} />
+            <p>Mesa2</p>
+            <button className="btn-numero" type="submit" onClick={(e) => autenticacaoMesa(e, 2)}><img className="tamanho-img" src={dois} /></button>
           </div>
           <div className="mesas">
-            <p>Mesa</p>
+            <p>Mesa3</p>
             <img className="tamanho-img"
               src={tres} />
           </div>
           <div className="mesas">
-            <p>Mesa</p>
+            <p>Mesa4</p>
             <img className="tamanho-img"
               src={quatro} />
           </div>
         </div>
         <div className="Formato-mesa">
           <div className="mesas" >
-            <p>Mesa</p>
+            <p>Mesa5</p>
             <img className="tamanho-img"
               src={cinco} />
           </div>
           <div className="mesas">
-            <p>Mesa</p>
+            <p>Mesa6</p>
             <img className="tamanho-img"
               src={seis} />
           </div>
           <div className="mesas">
-            <p>Mesa</p>
+            <p>Mesa7</p>
             <img className="tamanho-img"
               src={sete} />
           </div>
           <div className="mesas">
-            <p>Mesa</p>
+            <p>Mesa8</p>
             <img className="tamanho-img"
               src={oito} />
           </div>
@@ -91,18 +89,13 @@ function LoginMesa() {
         <p>Copyright</p>
       </footer>
 
-
-      <div>
-        <h2><Link to="/">voltar</Link></h2>
-      </div>
-
       <form className='formTemporario'>
         <input autoFocus value={idMesa}
           onChange={(e) => setidMesa(e.target.value)} placeholder="numero da mesa (temporario)" type="number" />
         <div>
-          <button type="submit" onClick={(e) => autenticacaoMesa(e, idMesa)}>Entrar</button>
+          <button className="btn-entrarMesa"  type="submit" onClick={(e) => autenticacaoMesa(e, idMesa)}>Entrar</button>
         </div>
-
+        
       </form>
 
     </>

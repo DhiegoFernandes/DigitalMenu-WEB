@@ -5,6 +5,9 @@ import { MainContext } from "../../context/context";
 import './LoginAtendente.css';
 
 import logoDM from "./images/DigitalMenu1.png";
+import olhoFechado from "./images/eyeclosed.png";
+import olhoAberto from "./images/eyeopen.png";
+
 
 function LoginAtendente() {
 
@@ -21,7 +24,12 @@ function LoginAtendente() {
 
       <header>
         <div id="navbar" className="navbar">
-          <h1 className="logo"><span className="color-secondary">D</span>igital <span className="color-secondary">M</span>enu</h1>
+
+          <Link className="digitalMenu" to="/">
+            <h1 className="logo"><span className="color-secondary">D</span>igital <span className="color-secondary">M</span>enu</h1>
+          </Link>
+
+
         </div>
       </header>
 
@@ -42,7 +50,7 @@ function LoginAtendente() {
 
                 <input type="submit" value="Entrar"> */}
             <form>
-              <div>
+              <div >
                 <input
                   autoFocus
                   value={nome}
@@ -50,7 +58,9 @@ function LoginAtendente() {
                   placeholder="Nome"
                   type="text"
                 />
-                <div>
+
+
+                <div className="senha">
                   <input
                     value={senha}
                     onChange={(e) => setSenha(e.target.value)}
@@ -58,24 +68,23 @@ function LoginAtendente() {
                     type={tipoSenha}
                   />
                   {tipoSenha === "password" ? (
-                    <button type="button"
+                    <button className="senha" type="button"
                       onClick={(e) => {
                         e.preventDefault();
                         setTipoSenha("text")
-                      }} >mostrar senha</button>
+                      }} ><img className="olhos" src={olhoFechado} /></button>
                   ) : (
-                    <button type="button"
+                    <button className="senha" type="button"
                       onClick={(e) => {
                         e.preventDefault();
                         setTipoSenha("password")
-                      }}>esconder senha</button>)}
+                      }}><img className="olhos" src={olhoAberto} /></button>)}
                 </div>
               </div>
-              <div>
-                <button
+              <div className="centralizaGlobal">
+                <button className="btn-entrar"
                   type="submit"
                   onClick={(e) => autenticacaoAtendente(e, nome, senha)}>Entrar</button>
-                <p><Link to="/">voltar</Link></p>
               </div>
             </form>
 
