@@ -10,13 +10,15 @@ import { faCoffee } from '@fortawesome/free-solid-svg-icons'; */
 
 function Home() {
 
- /*  const element = <FontAwesomeIcon icon={faCoffee} />; */
+  /*  const element = <FontAwesomeIcon icon={faCoffee} />; */
 
   return (
     <>
       <header>
         <div id="navbar" className="navbar">
-          <h1 className="logo"><span className="color-secondary">D</span>igital <span className="color-secondary">M</span>enu</h1>
+          <Link className="digitalMenu" to="/">
+            <h1 className="logo"><span className="color-secondary">D</span>igital <span className="color-secondary">M</span>enu</h1>
+          </Link>
           <nav>
             <ul>
               <li><Link className="direciona" to="/loginatendente">Login</Link></li>
@@ -52,7 +54,7 @@ function Home() {
           <a href=""><i className="fab fa-instagram fa-2x"></i></a>
           <a href=""><i className="fab fa-twitter fa-2x"></i></a>
         </div>
-        <p>Copyright</p>
+        <p> (footer bugado em resolucoes baixas)</p>
       </footer>
 
 

@@ -1,62 +1,13 @@
-@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400&family=Roboto:wght@100;300;400&display=swap");
 
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-  }
-
-body{
-    margin: 0;
-    font-family: "Open Sans", sans-serif;
-    background: #ccc;
-}
-h1, h2{
-    display: flex;
-    justify-content: center;
-}
-footer {
-    margin-top: 0px;
-}
-footer {
-    position: absolute;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    background: #333;
-    position: absolute;
-    width: 100%;
-    bottom: 0;
-    left: 0;
-    padding: 5px;
-    height: 85px;
-    color: aliceblue;
-  }
-  
-  footer a {
-    color: aliceblue;
-    padding: 20px;
-  }
-  
-  footer a:hover {
-    color: #d3a741;
-}
 .principal{
-    background-color: #fff;
-    margin-left: 500px;
-    margin-right: 500px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    border-radius: 10px;
+    background-color: #ffffff;
+    margin-left: 30%;
+    margin-right: 30%;
+    border-radius: 30px;
     padding: 20px;
     margin-top: 20px;
   }
-.logo{
-    background-color: #525252;
-    
-}
+
 .mensagem{
     margin-top: 100px;
     
@@ -66,10 +17,12 @@ footer {
     font-weight: bold;
     
 }
+
 .tamanho-img{
     height: 130px;
     width: 120px;
 }
+
 .Formato-mesa{
     display: flex;
     flex-direction: row;
@@ -106,4 +59,40 @@ footer {
     font-size: 30px;
     font-weight: 900;
     color: #d3a741;
+  }
+
+  .btn-entrarMesa {
+    font-size: 30px;
+    font-weight: bold;
+    padding: 10px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+    width: 100%;
+    border-radius: 10px;
+    background-color: orange;
+    color: white;
+  
+    text-decoration-line: none;
+    text-decoration: none;
+  }
+  
+  .btn-entrarMesa:hover {
+    background-color: #d3a741;
+    cursor: pointer;
+  }
+
+  .mesas:hover {
+    background-color: #f8f8f8;
+    height: 150px;
+
+
+  }
+
+  .btn-numero{
+    border: none;
+  }
+
+  .btn-numero:hover{
+    background-color: #ffb300;
+    cursor: pointer;
   }
