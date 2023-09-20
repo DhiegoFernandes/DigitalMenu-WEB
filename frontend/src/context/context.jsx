@@ -1,4 +1,4 @@
-import {createContext} from "react";
+import {createContext, useState, useEffect} from "react";
 import { useNavigate } from "react-router-dom";
 import api from "../api";
 
@@ -9,6 +9,8 @@ export const MainContext = createContext({});
 function MainProvider({ children }){
 
     const navigate = useNavigate();
+
+    const [valido, setValido] = useState(false)
     
     async function autenticacaoAtendente(e, nome, senha){
         e.preventDefault();
@@ -17,6 +19,9 @@ function MainProvider({ children }){
 
         try{
             const { data } = await api.post("/login", {nome, senha});
+            localStorage.setItem("chave", JSON.stringify(data.token));
+            api.defaults.headers.Authorization = `Bearer ${data.token}`;
+            setValido(true);
             navigate("/sistema");
             console.log(data)
         }catch (e) {
@@ -36,12 +41,44 @@ function MainProvider({ children }){
             console.log("Erro na autenticação" + e);
         }
     }
-    
+
+    function validaToken() {
+        const token = localStorage.getItem("chave");
+        if (token) {
+          api.defaults.headers.Authorization = `Bearer ${JSON.parse(token)}`;
+          api
+            .post("/verifica-token")
+            .then((response) => {
+              setValido(true);
+              console.log(response)
+            })
+            .catch((error) => {
+              api.defaults.headers.Authorization = undefined;
+              localStorage.removeItem("chave");
+              setValido(false);
+              console.log(error)
+            });
+        }}
+
+    // function logout(){
+    //     setValido(false);
+    //     localStorage.removeItem('chave')
+    //     api.defaults.headers.Authorization = undefined;
+    //     navigate("/")
+    // }
+
+    // useEffect(() => {
+    //     validaToken();
+    //   }, []);
+
     return(
         <MainContext.Provider
             value={{
                 autenticacaoAtendente,
-                autenticacaoMesa
+                autenticacaoMesa,
+                validaToken,
+                // logout,
+                valido
             }}
         >
             {children}
