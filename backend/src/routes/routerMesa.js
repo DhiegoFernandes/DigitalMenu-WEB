@@ -3,7 +3,7 @@ const router = express.Router();
 const token = require('../middleware/jwtToken');
 const mesaController = require('../controllers/mesaController');
 
-router.use('/mesa/check', token, mesaController.checkMesas);
+router.use('/mesa/check', mesaController.checkMesas);
 router.get('/mesas', (req, res) => {res.status(200).send('gg')});
 router.get('/mesa', token, mesaController.listarTodasMesas);
 router.get('/mesa/:status', token, mesaController.listarPorStatus);
