@@ -18,4 +18,5 @@ router.get('/user/catch/:nome', token, UserController.getCategoriaPorNome);
 router.delete('/user/:nome',token, UserController.delete);
 router.put('/user/:nome', token, UserController.put);
 router.post('/verifica-token', UserController.verificaToken);
+
 module.exports = router;
