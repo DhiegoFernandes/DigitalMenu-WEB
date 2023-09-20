@@ -60,16 +60,16 @@ function MainProvider({ children }){
             });
         }}
 
-    function logout(){
-        setValido(false);
-        localStorage.removeItem('chave')
-        api.defaults.headers.Authorization = undefined;
-        navigate("/")
-    }
+    // function logout(){
+    //     setValido(false);
+    //     localStorage.removeItem('chave')
+    //     api.defaults.headers.Authorization = undefined;
+    //     navigate("/")
+    // }
 
-    useEffect(() => {
-        validaToken();
-      }, []);
+    // useEffect(() => {
+    //     validaToken();
+    //   }, []);
 
     return(
         <MainContext.Provider
@@ -77,8 +77,8 @@ function MainProvider({ children }){
                 autenticacaoAtendente,
                 autenticacaoMesa,
                 validaToken,
-                valido,
-                logout
+                // logout,
+                valido
             }}
         >
             {children}

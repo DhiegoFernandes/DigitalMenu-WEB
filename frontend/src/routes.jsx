@@ -10,7 +10,7 @@ import { useContext } from 'react'
 
 
 function Privadas({Item}){
-  const valido = useContext(MainContext)
+  const { valido } = useContext(MainContext)
 
   return valido ? <Item /> : <Navigate to='/' />;
 }
