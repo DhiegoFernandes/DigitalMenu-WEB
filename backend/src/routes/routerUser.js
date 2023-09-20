@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const UserController = require('../controllers/userController');
-const token = require('../middleware/JWTToken')
+const token = require('../middleware/jwtToken')
 router.get('/', (req,res) => {res.status(200).send("Bem-vindo à minha API")});
 
 //login e registros:
@@ -9,12 +9,13 @@ router.use('/login', UserController.login);
 router.post('/register', UserController.register);
 
 //Rotas protegidas que requerem token JWT válido:
-router.use(token); // Aplicando o middleware JWT a partir deste ponto
 
-router.get('/user/:nome', UserController.getByName);
-router.get('/user',UserController.getAll);
-router.get('/active', UserController.getAllUsersActives);
-router.get('/user/catch/:nome', UserController.getCategoriaPorNome);
-router.delete('/user/:nome',UserController.delete);
-router.put('/user/:nome', UserController.put);
+
+router.get('/user/:nome', token, UserController.getByName);
+router.get('/user', token, UserController.getAll);
+router.get('/active', token, UserController.getAllUsersActives);
+router.get('/user/catch/:nome', token, UserController.getCategoriaPorNome);
+router.delete('/user/:nome',token, UserController.delete);
+router.put('/user/:nome', token, UserController.put);
+
 module.exports = router;
