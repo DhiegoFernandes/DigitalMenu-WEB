@@ -29,7 +29,7 @@ ul {
 }
 
 header {
-  margin-bottom: 35px;
+  margin-bottom: 0px;
 }
 
 footer {
@@ -37,8 +37,7 @@ footer {
 }
 
 main {
-  padding: 40px;
-  height: 100%;
+  padding: 0px;
 }
 
 .digitalMenu {

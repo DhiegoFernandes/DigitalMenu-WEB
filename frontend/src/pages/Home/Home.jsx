@@ -14,7 +14,9 @@ function Home() {
 
   return (
     <>
-      <header>
+
+    <body>
+    <header>
         <div id="navbar" className="navbar">
           <Link className="digitalMenu" to="/">
             <h1 className="logo"><span className="color-secondary">D</span>igital <span className="color-secondary">M</span>enu</h1>
@@ -56,6 +58,8 @@ function Home() {
         </div>
         <p> (footer bugado em resolucoes baixas)</p>
       </footer>
+    </body>
+     
 
 
     </>
