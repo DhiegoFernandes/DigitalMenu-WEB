@@ -7,6 +7,7 @@ import './LoginAtendente.css';
 import logoDM from "./images/DigitalMenu1.png";
 import olhoFechado from "./images/eyeclosed.png";
 import olhoAberto from "./images/eyeopen.png";
+import Header from "../../components/Header";
 
 
 function LoginAtendente() {
@@ -21,17 +22,7 @@ function LoginAtendente() {
 
   return (
     <>
-
-      <header>
-        <div id="navbar" className="navbar">
-
-          <Link className="digitalMenu" to="/">
-            <h1 className="logo"><span className="color-secondary">D</span>igital <span className="color-secondary">M</span>enu</h1>
-          </Link>
-
-
-        </div>
-      </header>
+      <Header />
 
       <main>
         <div>

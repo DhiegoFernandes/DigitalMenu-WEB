@@ -23,7 +23,7 @@ function MainProvider({ children }){
             api.defaults.headers.Authorization = `Bearer ${data.token}`;
             setValido(true);
             navigate("/sistema");
-            console.log(data)
+            console.log(data.token)
         }catch (e) {
             console.log("Erro na autenticação" + e);
         }
