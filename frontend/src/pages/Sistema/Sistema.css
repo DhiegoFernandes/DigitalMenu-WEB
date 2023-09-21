@@ -1,0 +1,107 @@
+.sistema {
+    display: grid;
+
+    grid-template-columns: 250px 1fr 1fr 1fr 1fr;
+    grid-template-rows: 60px 320px 320px;
+
+    border-radius: 10px;
+    border-color: #D3A741;
+    padding: 2px;
+    Gap: 5px 5px;
+
+}
+
+/* --------------  LATERAL TOPO (logo digitalmenu) --------------*/
+
+.logo1 {
+    background-color: #6A6A6A;
+    border-radius: 10px;
+    grid-column: 1/2;
+    ;
+}
+
+/* --------------  LATERAL --------------*/
+.barra-lateral {
+    display: grid;
+    background-color: #6A6A6A;
+    grid-row: 2/4;
+
+    border-radius: 10px;
+}
+
+.botoes-barraLateral {
+    display: grid;
+
+    height: 95%;
+    margin-left: 5px;
+    margin-right: 5px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+
+}
+
+.btn-direciona {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background-color: #e5a021;
+    color: white;
+    border-radius: 20px;
+    border-style: none;
+    font-size: 32px;
+    font-weight: bold;
+
+    margin-bottom: 10px;
+}
+
+.btn-direciona:hover {
+    background-color: #D3A741;
+    height: 93%;
+    cursor: pointer;
+}
+
+.img-botoes {
+
+    margin: 0px;
+    margin-left: 10px;
+    width: 40px;
+}
+
+
+/* -------------- SUPERIOR --------------*/
+.barra-superior {
+    background-color: #6A6A6A;
+    display: flex;
+    justify-content: flex-end;
+    border-radius: 10px;
+
+    grid-column: 2/6;
+
+}
+
+.usuario {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    text-align: right;
+
+    color: white;
+    font-size: 12px;
+}
+
+.img-usuario {
+    margin-left: 10px;
+    width: 52px;
+}
+
+
+/* -------------- PRINCIPAL --------------*/
+.container-principal {
+    background-color: rgb(163, 218, 218);
+    border-radius: 10px;
+
+    grid-column: 2/6;
+    grid-row: 2/4;
+
+}
