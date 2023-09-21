@@ -1,5 +1,4 @@
 import { useState, useContext } from "react";
-import { Link } from "react-router-dom";
 import { MainContext } from "../../context/context";
 
 import './LoginAtendente.css';
