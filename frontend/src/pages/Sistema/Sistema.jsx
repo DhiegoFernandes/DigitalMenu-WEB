@@ -3,6 +3,11 @@
 import { Link } from "react-router-dom";
 import './Sistema.css';
 
+/* import de componentes */
+import Mesa from '../../components/mesa/Mesa';
+import Relatorio from '../../components/Relatorio/Relatorio';
+
+/* import de imagens */
 import pedido from './images/pedido.png';
 import produto from './images/produto.png';
 import categorias from './images/categoria.png';
@@ -24,7 +29,7 @@ function Sistema() {
                 </div>
                 <div className='barra-lateral'>
                     <div className="botoes-barraLateral">
-                    <button className="btn-direciona">Relatórios <img className="img-botoes" src={grafico} alt="" /></button>
+                        <button className="btn-direciona">Relatórios <img className="img-botoes" src={grafico} alt="" /></button>
                         <button className="btn-direciona">Pedidos <img className="img-botoes" src={pedido} alt="" /></button>
                         <button className="btn-direciona">Produtos <img className="img-botoes" src={produto} alt="" /></button>
                         <button className="btn-direciona">Categorias <img className="img-botoes" src={categorias} alt="" /></button>
@@ -46,7 +51,9 @@ function Sistema() {
                     </div>
                 </div>
                 <div className='container-principal'>
-                    aqui vai a pagina
+                    <Relatorio />
+                    <Mesa />
+
                 </div>
             </div>
 
