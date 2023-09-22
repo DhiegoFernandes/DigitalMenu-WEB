@@ -1,6 +1,20 @@
+import { useState } from 'react';
+import { createPortal } from "react-dom";
+
+import { Modal } from '../modelPopUp/modal';
 import './relatorio.css';
 
 function Relatorio() {
+    /* Abre o popup */
+    const [modalOpen, setModalOpen] = useState(false);
+    /* Recebe mensagem do model*/
+    const [message, setMessage] = useState("");
+    /* Fecha o popup caso qualquer botão for clicado e seta mensagem*/
+    const handleButtonClick = (value) => {
+        setModalOpen(false)
+        setMessage(value)
+    };
+
     return (
         <>
             <div className='relatorio-main'>
@@ -14,16 +28,30 @@ function Relatorio() {
                 </div>
                 <div className='relatorio-below'>
                     <h2>Pesquisar</h2>
-                    <div className='relatorios-botoes-pesquisa'>
-                        <button>Produtos mais faturado</button>
-                        <button>Produtos mais vendidos</button>
-                        <button>Total pedidos</button>
-                        <button>Total pedidos mês</button>
-                        <button>Gorjetas</button>
+                    <div>
+                        <button className='btnPopUp-Pesquisa'>Produtos mais faturado</button>
+                        <button className='btnPopUp-Pesquisa'>Produtos mais vendidos</button>
+                        <button className='btnPopUp-Pesquisa'>Total pedidos</button>
+                        <button className='btnPopUp-Pesquisa' onClick={() => setModalOpen(true)}>Total Pedidos Mês
+                        </button>
+                        <button className='btnPopUp-Pesquisa'>Gorjetas</button>
+                        {modalOpen && (
+                            createPortal(<Modal
+                                onSubmit={handleButtonClick}
+                                onCancel={handleButtonClick}
+                                onClose={handleButtonClick}
+                            >
+                                {/*   essa área pode ser alterada */}
+                                <h2 className='tituloPopUp'>Esse é o titulo</h2>
+                                <p>Essa área pode ser alterada</p>
+                                <h2>(colocar combo box dos meses aqui)</h2>
+
+                            </Modal>, document.body)
+                        )}
                     </div>
                     <div className='relatorio-tabelaInf'>
                         {/* {data} */}
-                        DADOS
+                        {message}
                     </div>
                 </div>
             </div>
