@@ -9,6 +9,7 @@ function MainProvider({ children }) {
 
     const [valido, setValido] = useState(false);
 
+    //Login para o cliente
     async function autenticacaoAtendente(e, nome, senha) {
         e.preventDefault();
         nome = nome.trim();
@@ -16,14 +17,11 @@ function MainProvider({ children }) {
 
         try {
             const { data } = await api.post("/login", { nome, senha });
-            localStorage.setItem("chave", JSON.stringify(data.token));
-
+            localStorage.setItem("chave",data.token);
             api.defaults.headers.Authorization = `Bearer ${data.token}`;
             setValido(true);
-
             // Redireciona explicitamente para a página do sistema após o login
             navigate("/sistema", { replace: true }); // Use 'replace: true' para substituir a entrada do histórico
-
             // Agora, atualize a página atual no localStorage
             localStorage.setItem("currentPage", "/sistema");
         } catch (e) {
@@ -31,6 +29,7 @@ function MainProvider({ children }) {
         }
     }
 
+    //Login para as mesas
     async function autenticacaoMesa(e, idMesa) {
         e.preventDefault();
         idMesa = idMesa.trim();
@@ -44,47 +43,37 @@ function MainProvider({ children }) {
         }
     }
 
+    //Validação do token
     function validaToken() {
-        const token = localStorage.getItem("chave");
+        const token = (localStorage.getItem("chave"));
         if (token) {
-            api.defaults.headers.Authorization = `Bearer ${JSON.parse(token)}`;
+            api.defaults.headers.Authorization = `Bearer ${token}`;
             api
-                .post("/verifica-token")
+                .post("/verifica-token")// {headers: {"Authorization": `Bearer ${token}`, "Accept": "application/json", "Content-Type": "application/json" }})
                 .then((response) => {
                     setValido(true);
+                    navigate("/sistema");
                 })
                 .catch((error) => {
                     api.defaults.headers.Authorization = undefined;
                     localStorage.removeItem("chave");
                     setValido(false);
-                    console.log(error);
                 });
         }
     }
 
+    //Função para sair do sistema
     function logout() {
         setValido(false);
         localStorage.removeItem("chave");
-        localStorage.removeItem("autenticado"); // Remove o estado de autenticação
+        // Remove o estado de autenticação
+        localStorage.removeItem("autenticado"); 
         api.defaults.headers.Authorization = undefined;
         navigate("/");
     }
 
     useEffect(() => {
         validaToken();
-
-        // Verifica se o usuário está autenticado no localStorage
-        const autenticado = localStorage.getItem("autenticado");
-        if (autenticado === "true") {
-            // Redireciona para a página armazenada no localStorage após o login
-            const currentPage = localStorage.getItem("currentPage");
-            console.log(currentPage);
-            if (currentPage) {
-                navigate(currentPage);
-            } else {
-                navigate("/sistema");
-            }
-        }
     }, []);
 
     return (

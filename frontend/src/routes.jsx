@@ -9,8 +9,8 @@ import MainProvider, { MainContext } from './context/context'
 import { useContext } from 'react'
 
 
-function Privadas({Item}){
-  const { valido } = useContext(MainContext)
+function Privadas({ Item }){
+  const { valido } = useContext(MainContext);
 
   return valido ? <Item /> : <Navigate to='/' />;
 }

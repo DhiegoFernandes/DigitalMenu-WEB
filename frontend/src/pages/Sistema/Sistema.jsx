@@ -1,5 +1,5 @@
-// import {useContext} from "react";
-// import {MainContext} from "../../context/context.jsx"
+import {useContext} from "react";
+import {MainContext} from "../../context/context.jsx"
 import { Link } from "react-router-dom";
 import './Sistema.css';
 
@@ -17,7 +17,7 @@ import administrador from './images/administrador.png';
 import grafico from './images/grafico.png';
 
 function Sistema() {
-    // const { logout } = useContext(MainContext);
+    const { logout } = useContext(MainContext);
 
     return (
         <>
@@ -35,9 +35,7 @@ function Sistema() {
                         <button className="btn-direciona">Categorias <img className="img-botoes" src={categorias} alt="" /></button>
                         <button className="btn-direciona">Mesas <img className="img-botoes" src={mesas} alt="" /></button>
                         <button className="btn-direciona">Usuários <img className="img-botoes" src={usuarios} alt="" /></button>
-                        <button className="btn-direciona"
-                        // onClick={logout}
-                        >Sair</button>
+                        <button className="btn-direciona" onClick={logout}>Sair</button>
                     </div>
 
                 </div>
