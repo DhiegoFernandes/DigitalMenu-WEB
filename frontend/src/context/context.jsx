@@ -1,12 +1,11 @@
-import React, { createContext, useState, useEffect } from "react";
-import { useNavigate, useLocation } from "react-router-dom";
+import { createContext, useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import api from "../api";
 
 export const MainContext = createContext({});
 
 function MainProvider({ children }) {
     const navigate = useNavigate();
-    const location = useLocation();
 
     const [valido, setValido] = useState(false);
 
