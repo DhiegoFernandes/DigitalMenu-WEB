@@ -22,24 +22,24 @@ function Sistema() {
     return (
         <>
             <div className="sistema">
-                <div className="logo1">
+                <div className="logo1 fade">
                     <Link className="digitalMenu" to="/">
                         <h1 className="logo"><span className="color-secondary">D</span>igital <span className="color-secondary">M</span>enu</h1>
                     </Link>
                 </div>
-                <div className='barra-lateral'>
+                <div className='barra-lateral fade2'>
                     <div className="botoes-barraLateral">
-                        <button className="btn-direciona">Relatórios <img className="img-botoes" src={grafico} alt="" /></button>
-                        <button className="btn-direciona">Pedidos <img className="img-botoes" src={pedido} alt="" /></button>
-                        <button className="btn-direciona">Produtos <img className="img-botoes" src={produto} alt="" /></button>
-                        <button className="btn-direciona">Categorias <img className="img-botoes" src={categorias} alt="" /></button>
-                        <button className="btn-direciona">Mesas <img className="img-botoes" src={mesas} alt="" /></button>
-                        <button className="btn-direciona">Usuários <img className="img-botoes" src={usuarios} alt="" /></button>
-                        <button className="btn-direciona" onClick={logout}>Sair</button>
+                        <button className="btn-direciona marrom ">Relatórios <img className="img-botoes" src={grafico} alt="" /></button>
+                        <button className="btn-direciona marrom">Pedidos <img className="img-botoes" src={pedido} alt="" /></button>
+                        <button className="btn-direciona marrom">Produtos <img className="img-botoes" src={produto} alt="" /></button>
+                        <button className="btn-direciona marrom">Categorias <img className="img-botoes" src={categorias} alt="" /></button>
+                        <button className="btn-direciona marrom">Mesas <img className="img-botoes" src={mesas} alt="" /></button>
+                        <button className="btn-direciona marrom">Usuários <img className="img-botoes" src={usuarios} alt="" /></button>
+                        <button className="btn-direciona marrom" onClick={logout}>Sair</button>
                     </div>
 
                 </div>
-                <div className='barra-superior'>
+                <div className='barra-superior '>
                     <div className="usuario">
                         <div>
                             <h2>Bem-vindo(a)!</h2>

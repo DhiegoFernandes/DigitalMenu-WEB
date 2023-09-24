@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { createPortal } from "react-dom";
-
 import { Modal } from '../modelPopUp/modal';
 import './relatorio.css';
 
@@ -18,23 +17,25 @@ function Relatorio() {
     return (
         <>
             <div className='relatorio-main'>
-                <div>
-                    <h1>Relatório</h1>
-                    <h2 className='text-topRelatorio'>Top produtos mais vendidos</h2>
+                <div className='relatorio-topo'>
+                    <div className='text-relatorio'>
+                        <h1>Relatório</h1>
+                        <h2 className='text-topRelatorio'>Top produtos mais vendidos</h2>
+                    </div>
                     <div className="relatorio-tabelaSup">
                         {/* {data} */}
                         DADOS
                     </div>
                 </div>
                 <div className='relatorio-below'>
-                    <h2>Pesquisar</h2>
+                    <h2 className='txt-pesquisar'>Pesquisar</h2>
                     <div>
-                        <button className='btnPopUp-Pesquisa'>Produtos mais faturado</button>
-                        <button className='btnPopUp-Pesquisa'>Produtos mais vendidos</button>
-                        <button className='btnPopUp-Pesquisa'>Total pedidos</button>
-                        <button className='btnPopUp-Pesquisa' onClick={() => setModalOpen(true)}>Total Pedidos Mês
+                        <button className='btn-sistema laranja'>Produtos mais faturado</button>
+                        <button className='btn-sistema laranja'>Produtos mais vendidos</button>
+                        <button className='btn-sistema laranja'>Total pedidos</button>
+                        <button className='btn-sistema laranja'>Gorjetas</button>
+                        <button className='btn-sistema laranja' onClick={() => setModalOpen(true)}>Total Pedidos Mês
                         </button>
-                        <button className='btnPopUp-Pesquisa'>Gorjetas</button>
                         {modalOpen && (
                             createPortal(<Modal
                                 onSubmit={handleButtonClick}
