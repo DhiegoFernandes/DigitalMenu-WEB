@@ -40,11 +40,11 @@ function LoginMesa() {
         <div className="Formato-mesa">
           <div className="mesas">
             <p>Mesa1</p>
-            <button className="btn-numero" type="submit" onClick={(e) => autenticacaoMesa(e, 1)}><img className="tamanho-img" src={um} /></button>
+            <button className="btn-numero" type="submit" onClick={(e) => autenticacaoMesa(e, '1')}><img className="tamanho-img" src={um} /></button>
           </div>
           <div className="mesas">
             <p>Mesa2</p>
-            <button className="btn-numero" type="submit" onClick={(e) => autenticacaoMesa(e, 2)}><img className="tamanho-img" src={dois} /></button>
+            <button className="btn-numero" type="submit" onClick={(e) => autenticacaoMesa(e, '2')}><img className="tamanho-img" src={dois} /></button>
           </div>
           <div className="mesas">
             <p>Mesa3</p>

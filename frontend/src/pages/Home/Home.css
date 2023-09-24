@@ -1,55 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@300;400&family=Roboto:wght@100;300;400&display=swap");
 
-
-/* ----  MARCAÇÔES GLOBAIS ---- (alteram todo o front end)*/
-* {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
-
-h1{
-  display: flex;
-  justify-content: center;
-}
-
 .fundo {
   width: 100%;
-}
-
-body {
-  font-family: "Open Sans", sans-serif;
-  color: #000;
-  line-height: 1.6;
-  background: #ccc;
-}
-
-ul {
-  list-style: none;
-}
-
-header {
-  margin-bottom: 0px;
-}
-
-footer {
-  margin-top: 0px;
-}
-
-main {
-  padding: 0px;
-}
-
-.digitalMenu {
-  color: white;
-  text-decoration: none;
-
-}
-
-.centralizaGlobal{
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 
 /*  HEADER */
@@ -197,8 +149,4 @@ footer a:hover {
 .btn-primary:hover {
   background-color: #d3a741;
   cursor: pointer;
-}
-
-.color-secondary {
-  color: #d3a741;
 }

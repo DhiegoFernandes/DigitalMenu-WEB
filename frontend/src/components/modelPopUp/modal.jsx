@@ -18,7 +18,7 @@ export const Modal = ({ onSubmit, onCancel, onClose, children }) => {
                 <div className="modal-content">{children}</div>
                 <div className="modal-footer">
                     <button className="btn btn-submit" onClick={() =>
-                        onSubmit("O botão pesquisar foi clicado")}>Pesquisar</button>
+                        onSubmit("O botão pesquisar foi clicado")}>Confirmar</button>
                     <button className="btn btn-cancel" onClick={() =>
                         onCancel("O botão cancelar foi clicado")}>Cancelar</button>
 
