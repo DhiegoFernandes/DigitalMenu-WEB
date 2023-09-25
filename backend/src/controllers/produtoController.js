@@ -8,7 +8,7 @@ exports.criarPoduto = async(req,res) => {
     const {nome, preco, descricao, categoria} = req.body;
 
     if(!nome || !preco || !categoria){
-        return res.status(404).json({message: 'Todos os campos obrigatorios devem ser enviados'});
+        return res.status(400).json({message : 'Campo(s) obrigatorio(s) nao preenchido'});
     }
     try {
         const produto = await produtoModel.criarProduto(nome,preco,descricao,categoria);
@@ -54,7 +54,7 @@ exports.listarProdutoPorStatus = async(req, res) => {
     const{status} = req.body;
 
     if(!status){
-        return res.status(400).json({message : 'Campo(s) obrigatorio nao preenchido'});
+        return res.status(400).json({message : 'Campo(s) obrigatorio(s) nao preenchido'});
     }
 
     if(!validStatus.includes(status)){
@@ -74,7 +74,7 @@ exports.listarProdutoPorFaixaDePreco = async(req, res) => {
     const{valorInicial, valorFinal} = req.body;
 
     if (!valorInicial || !valorFinal) {
-        return res.status(400).json({message : 'Campo(s) obrigatorio nao preenchido'});
+        return res.status(400).json({message : 'Campo(s) obrigatorio(s) nao preenchido'});
     }
 
     try {
@@ -90,7 +90,7 @@ exports.listarProdutoPorDescricao = async(req, res) => {
     const{descricao} = req.body;
         
     if(!descricao){
-            return res.status(400).json({message : 'Campo(s) obrigatorio nao preenchido'});
+        return res.status(400).json({message : 'Campo(s) obrigatorio(s) nao preenchido'});
         }
 
     try {
@@ -105,7 +105,7 @@ exports.listarProdutoPorDescricao = async(req, res) => {
 exports.listarProdutoPorCategoria = async(req, res) => {
     const{categoria} = req.body;
         if(!categoria){
-            return res.status(400).json({message : 'Campo(s) obrigatorio nao preenchido'});
+            return res.status(400).json({message : 'Campo(s) obrigatorio(s) nao preenchido'});
         }
     try {
         const produto = await produtoModel.listarProdutoPorCategoria(categoria);
@@ -119,7 +119,7 @@ exports.listarProdutoPorCategoria = async(req, res) => {
 exports.alterarProdutoPeloNome = async(req, res) => {
     const{nomeNovo, preco, descricao, categoria, status, nome} = req.body;
         if(!nome || !nomeNovo){
-            return res.status(404).json({message: 'Campo(s) obrigatorio nao preenchido'});
+            return res.status(400).json({message : 'Campo(s) obrigatorio(s) nao preenchido'});
         }
 
         const existeProduto = await produtoModel.listarProdutoPorNome(nome);
