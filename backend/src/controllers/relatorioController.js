@@ -16,6 +16,10 @@ exports.totalPedidos = async(req,res) => {
 exports.listarQtdeVendidaPorItem = async(req, res) => {
     const {idproduto} = req.body;
 
+    if(!idproduto){
+        return res.status(404).json({message : 'O codigo do item precisa ser informado'})
+    }
+
     try {
         const relatorio = await relatorioModel.listarItemQtdeVendidaPorItem(idproduto);
         res.status(200).json(relatorio);
@@ -53,7 +57,7 @@ exports.listarItensPorPedidoAgrupado = async(req, res) => {
     try {
         const relatorio = await relatorioModel.listarItensPorPedidoAgrupado(id_pedido);
         if (relatorio === null) {
-            return res.status(404).json({ mensagem: 'Nenhum item foi encontrado para o pedido especificado.' });
+            return res.status(404).json({ message: 'Nenhum item foi encontrado para o pedido especificado.' });
         }
         res.status(200).json(relatorio)
     } catch (error) {

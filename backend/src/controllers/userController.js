@@ -113,11 +113,11 @@ exports.getCategoriaPorNome = async(req,res)=>{
 };
 
 exports.put = async (req, res) => {
-    const { nome } = req.params;
+    const { nome } = req.body;
     const { senha } = req.body; 
 
     if(!nome || !senha){
-        return res.status(404).json({message: 'Todos os campos devem ser enviados'});
+        return res.status(400).json({message: 'Todos os campos devem ser enviados'});
     }
     
     if(nome.length > 30 || senha.length > 30){
@@ -150,7 +150,7 @@ exports.delete = async(req,res)=>{
     
     try{
         if(!existUser){
-            res.status(500).json({message : 'Usuario nao existe'});     
+            res.status(404).json({message : 'Usuario nao existe'});     
         }else{
             await UserModel.delete(nome);
             res.status(200).json({message : 'Usuário deletado com sucesso!'});
