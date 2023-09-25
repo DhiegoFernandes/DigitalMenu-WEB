@@ -1,4 +1,4 @@
-import {useContext} from "react";
+import {useContext, useEffect, useState} from "react";
 import {MainContext} from "../../context/context.jsx"
 import { Link } from "react-router-dom";
 import './Sistema.css';
@@ -18,6 +18,14 @@ import grafico from './images/grafico.png';
 
 function Sistema() {
     const { logout } = useContext(MainContext);
+    const [nomeUsuario, setNomeUsuario] = useState("");
+
+    useEffect(() => {
+    const usuario = localStorage.getItem("usuario");
+    if(usuario){
+        setNomeUsuario(usuario)
+    }
+    },[]);
 
     return (
         <>
@@ -43,7 +51,7 @@ function Sistema() {
                     <div className="usuario">
                         <div>
                             <h2>Bem-vindo(a)!</h2>
-                            <h2>(usuario)</h2>
+                            <h2>{nomeUsuario}</h2>
                         </div>
                         <img className="img-usuario" src={administrador} alt="" />
                     </div>

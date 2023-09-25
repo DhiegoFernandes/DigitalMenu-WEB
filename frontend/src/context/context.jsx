@@ -18,6 +18,7 @@ function MainProvider({ children }) {
         try {
             const { data } = await api.post("/login", { nome, senha });
             localStorage.setItem("chave",data.token);
+            localStorage.setItem("usuario", nome);
             api.defaults.headers.Authorization = `Bearer ${data.token}`;
             setValido(true);
             // Redireciona explicitamente para a página do sistema após o login
