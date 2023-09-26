@@ -67,7 +67,7 @@ exports.register = async (req, res) => {
 };
 
 exports.getByName = async(req,res)=>{
-    const {nome} = req.params;
+    const {nome} = req.body;
 
     try{
         const usuario = await UserModel.buscarPorUsuario(nome);
@@ -101,7 +101,7 @@ exports.getAll = async(req,res)=>{
 };
 
 exports.getCategoriaPorNome = async(req,res)=>{
-    const {nome} = req.params;
+    const {nome} = req.body;
     try{
         const usuario = await UserModel.listarCategoriaPorNome(nome);
         res.json(usuario);
@@ -145,7 +145,7 @@ exports.put = async (req, res) => {
 };
 
 exports.delete = async(req,res)=>{
-    const {nome} = req.params;
+    const {nome} = req.body;
     const existUser = await UserModel.verificaExistencia(nome);
     
     try{

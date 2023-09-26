@@ -11,11 +11,11 @@ router.post('/register', UserController.register);
 //Rotas protegidas que requerem token JWT válido:
 
 
-router.get('/user/:nome', token, UserController.getByName);
+router.get('/user/nome', token, UserController.getByName);
 router.get('/user', token, UserController.getAll);
 router.get('/active', token, UserController.getAllUsersActives);
-router.get('/user/catch/:nome', token, UserController.getCategoriaPorNome);
-router.delete('/user/:nome',token, UserController.delete);
+router.get('/user/catch', token, UserController.getCategoriaPorNome);
+router.delete('/user',token, UserController.delete);
 router.put('/user', token, UserController.put);
 router.post('/verifica-token', UserController.verificaToken);
 
