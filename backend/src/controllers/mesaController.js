@@ -6,16 +6,20 @@ const validStatus = ["ATIVADO", "DESATIVADO"]
 
 exports.insertMesa = async(req,res) =>{
     const{idMesa} = req.body;
-
     if(!idMesa){
         return res.status(400).json({message : 'Campo(s) obrigatorio(s) nao preenchido'});
     }
 
+    const verificaSeExiste = await mesaModel.listarMesaPorId(idMesa);
+    if(verificaSeExiste !== null){
+        return res.status(400).json({message : 'Essa mesa ja existe'});
+    }
+
     try{
         const mesa = await mesaModel.criarMesa(idMesa);
+        console.log("json "+mesa);
         res.status(201).json(mesa);
     }catch(error){
-        console.error(err);
         res.status(500).json({message : 'Erro interno'});
     }
 };

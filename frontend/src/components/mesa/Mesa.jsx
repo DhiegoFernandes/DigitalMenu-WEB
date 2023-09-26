@@ -1,6 +1,14 @@
+import { useState, useContext } from 'react';
 import './Mesa.css';
+import { MainContext } from '../../context/context';
+
 
 function Mesa() {
+
+    const {cadastrarMesa} = useContext(MainContext);
+
+    const [idMesa, setIdMesa] = useState("");
+
     return (
         <>
 
@@ -18,8 +26,21 @@ function Mesa() {
                 <div className="mesa-cadastrOpcoes">
                     <div className="mesa-cadastrOpcoes-esquerda">
                         <h2>Cadastrar Mesa</h2>
-                        <span>Número da mesa: <input type="text" /></span>
-                        <button className='btn-sistema laranja'>Cadastrar</button>
+                        <span>Número da mesa: 
+                            <input 
+                            autoFocus
+                            value={idMesa} 
+                            onChange={(e) => setIdMesa(e.target.value)}
+                            placeholder='' 
+                            type="text" 
+                        />
+                        </span>
+                        <button className='btn-sistema laranja'
+                        type='submit'
+                        onClick={(e)=> cadastrarMesa(e, idMesa)}
+                        >
+                            Cadastrar
+                        </button>
                     </div>
                     <div className="mesa-cadastrOpcoes-direita">
                         <h2>Opções</h2>

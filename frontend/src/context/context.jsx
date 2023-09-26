@@ -30,6 +30,32 @@ function MainProvider({ children }) {
         }
     }
 
+    async function cadastrarMesa(e, idMesa) {
+        e.preventDefault();
+        // Verifica se numeroMesa é uma string e pode ser convertida em um número
+        if (typeof idMesa === "string") {
+            idMesa = parseInt(idMesa, 10);
+    
+            // Verifica se a conversão foi bem-sucedida
+            if (isNaN(idMesa)) {
+                console.error("Número inválido");
+                return; // Retorna para evitar a chamada da API com um número inválido
+            }
+        } else {
+            console.error("Número inválido");
+            return; // Retorna para evitar a chamada da API com um número inválido
+        }
+    
+        try {
+            const { data } = await api.post("/mesa", { idMesa });
+            // Realiza o redirecionamento após o sucesso da chamada da API
+            navigate("/sistema");
+        } catch (e) {
+            console.error("Erro ao cadastrar mesa:", e);
+        }
+    }
+    
+
     //Login para as mesas
     async function autenticacaoMesa(e, idMesa) {
         e.preventDefault();
@@ -85,6 +111,7 @@ function MainProvider({ children }) {
                 validaToken,
                 logout,
                 valido,
+                cadastrarMesa,
             }}
         >
             {children}

@@ -5,8 +5,10 @@ import LoginAtendente from './pages/LoginAtendente/LoginAtendente'
 import LoginMesa from './pages/LoginMesa/LoginMesa'
 import Sistema from './pages/Sistema/Sistema'
 import Menu from './pages/Menu/Menu'
+import Mesa from './components/mesa/Mesa'
 import MainProvider, { MainContext } from './context/context'
 import { useContext } from 'react'
+
 
 
 function Privadas({ Item }){
@@ -26,6 +28,7 @@ function Rotas() {
               <Route path='/loginatendente' element={<LoginAtendente />}/>
               <Route path='/loginmesa' element={<LoginMesa/>}/>
               <Route path='/sistema' element={<Privadas Item={Sistema}/>}/>
+              <Route path='/sistema' element={<Privadas Item={Mesa}/>}/>
               <Route path='/menu' element={<Menu />}/>
             </Routes>
           </MainProvider>
