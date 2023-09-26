@@ -2,7 +2,8 @@ const express = require('express');
 const pedidoModel = require('../models/pedidoModel');
 const connection = require('../connection/connections');
 
-const validStatus = ["ABERTO", "CANCELADO", "ENCERRADO"]
+const validStatus = ["ABERTO", "CANCELADO", "ENCERRADO"];
+
 exports.adicionaPedido = async(req,res) => {
     const {idMesa} = req.body;
 
