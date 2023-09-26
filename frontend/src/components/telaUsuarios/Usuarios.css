@@ -1,0 +1,83 @@
+.usuario-completo{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.usuario-completo h1{
+    font-weight: bold;
+    
+}
+.titulo{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+}
+.pesquisar-botoes{
+    display: flex;
+    gap: 20px;
+    
+}
+.pesquisar-botoes button{
+    margin-top: 10px;
+    width: 80px;
+    height: 20px;
+    background-color: #FAA914;
+    color: black;
+    
+    font-size: 15px;
+    border-radius: 20px;
+    margin-bottom: 10px;
+}
+.usuarios-tabela{
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 30px;
+    background-color: #fff;
+    width: 800px;
+    height: 250px;
+}
+.usuarios-opcoes{
+    display: flex;
+    gap: 290px;
+
+}
+.usuarios-opcoes-esquerda{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+}
+.usuario-span-negrito{
+    font-weight: bold;
+}
+.usuarios-opcoes-esquerda input[type="text"]{
+    margin-left: 10px;
+    width: 120px;
+    height: 20px;
+}
+.tipo-acesso-radio{
+    margin-bottom: 10px;
+}
+.tipo-acesso-radio label{
+    margin-left: 10px;
+}
+.usuario-span-margem{
+    margin-left: 10px;
+}
+.usuarios-opcoes button{
+    width: 80px;
+    height: 20px;
+    background-color: #FAA914;
+    color: black;
+    font-size: 15px;
+    border-radius: 20px;
+    
+}
+.usuarios-opcoes-direita{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}

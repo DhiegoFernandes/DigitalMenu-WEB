@@ -3,9 +3,11 @@
 import { Link } from "react-router-dom";
 import './Sistema.css';
 
+
 /* import de componentes */
 import Mesa from '../../components/mesa/Mesa';
 import Relatorio from '../../components/Relatorio/Relatorio';
+import Usuario from '../../components/telaUsuarios/Usuarios'
 
 /* import de imagens */
 import pedido from './images/pedido.png';
@@ -51,8 +53,9 @@ function Sistema() {
                     </div>
                 </div>
                 <div className='container-principal'>
-                    <Relatorio />
-                    <Mesa />
+                    <Usuario />
+                    {/* <Relatorio />
+                    <Mesa /> */}
 
                 </div>
             </div>
