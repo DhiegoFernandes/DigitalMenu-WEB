@@ -3,13 +3,13 @@ const router = express.Router();
 const token = require('../middleware/jwtToken');
 const categoriaController = require('../controllers/CategoriaController');
 
-router.get('/categoria/listar', token, categoriaController.listarCategoria);
-router.get('/categoria/listar/ativas', token, categoriaController.listarCategoriaAtivas);
-router.get('/categoria/listar/status/:status', token, categoriaController.listarCategoriaPorStatus);
-router.get('/categoria/listar/:idcategoria', token, categoriaController.listarPorId);
-router.get('/categoria/listar/nome/:nome', token, categoriaController.listarPorNome);
-router.post('/categoria/criar', token, categoriaController.criarCategoria);
-router.put('/categoria/atualizar', token, categoriaController.updateCategoria);
-router.delete('/categoria/deletar/:idcategoria', token, categoriaController.deleteCategoria);
+router.get('/categorias/listar', token, categoriaController.listarCategoria);
+router.get('/categorias/listar/ativas', token, categoriaController.listarCategoriaAtivas);
+router.get('/categorias/listar/status', token, categoriaController.listarCategoriaPorStatus);
+router.get('/categorias/listar-por-id', token, categoriaController.listarPorId);
+router.get('/categorias/listar/nome', token, categoriaController.listarPorNome);
+router.post('/categorias/criar', token, categoriaController.criarCategoria);
+router.put('/categorias/atualizar', token, categoriaController.updateCategoria);
+router.delete('/categorias/deletar', token, categoriaController.deleteCategoria);
 
 module.exports = router;

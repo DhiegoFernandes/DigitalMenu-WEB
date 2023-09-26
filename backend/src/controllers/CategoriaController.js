@@ -16,7 +16,7 @@ exports.listarCategoria = async(req, res) => {
 };
 
 exports.listarPorId = async(req,res) => {
-    const idcategoria = req.params.idcategoria;
+    const idcategoria = req.body.idcategoria;
 
     if(!idcategoria){
         return res.status(400).json({message : 'Campo(s) obrigatorio(s) nao preenchido'});
@@ -32,7 +32,7 @@ exports.listarPorId = async(req,res) => {
 };
 
 exports.listarPorNome = async(req,res) => {
-    const nome = req.params.nome;
+    const nome = req.body.nome;
 
     if(!nome){
         return res.status(400).json({message : 'Campo(s) obrigatorio(s) nao preenchido'});
@@ -62,7 +62,7 @@ exports.listarCategoriaAtivas = async(req, res) => {
 };
 
 exports.listarCategoriaPorStatus = async(req, res) => {
-    const status =  req.params.status;
+    const status =  req.body.status;
 
     if(!status){
         return res.status(400).json({message : 'Campo(s) obrigatorio(s) nao preenchido'});
