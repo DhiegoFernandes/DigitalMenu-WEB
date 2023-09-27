@@ -1,7 +1,7 @@
 import { createContext, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import api from "../api";
-
+import { toast } from 'react-toastify';
 export const MainContext = createContext({});
 
 function MainProvider({ children }) {
@@ -49,12 +49,38 @@ function MainProvider({ children }) {
         try {
             const { data } = await api.post("/mesa", { idMesa });
             // Realiza o redirecionamento após o sucesso da chamada da API
+            console.log("Mesa criada com sucesso id da mesa:"+ idMesa)
             navigate("/sistema");
         } catch (e) {
             console.error("Erro ao cadastrar mesa:", e);
         }
     }
+
+    async function deletarMesa(e, idMesa) {
+        e.preventDefault();
+        
+        // Verifica se numeroMesa é uma string e pode ser convertida em um número
+        if (typeof idMesa === "string") {
+            idMesa = parseInt(idMesa, 10);
     
+            // Verifica se a conversão foi bem-sucedida
+            if (isNaN(idMesa)) {
+                console.error("Número inválido");
+                return; // Retorna para evitar a chamada da API com um número inválido
+            }
+        } else {
+            console.error("Número inválido");
+            return; // Retorna para evitar a chamada da API com um número inválido
+        }
+    
+        try {
+            const { data } = await api.delete(`/mesa/${idMesa}`);
+            console.log("Mesa deletada: " + idMesa);
+            navigate("/sistema");
+        } catch (e) {
+            console.error("Erro ao deletar mesa:", e);
+        }
+    }
 
     //Login para as mesas
     async function autenticacaoMesa(e, idMesa) {
@@ -64,7 +90,6 @@ function MainProvider({ children }) {
         try {
             const { data } = await api.post("/mesa/check", { idMesa });
             navigate("/sistema");
-            console.log(data);
         } catch (e) {
             console.log("Erro na autenticação" + e);
         }
@@ -112,6 +137,7 @@ function MainProvider({ children }) {
                 logout,
                 valido,
                 cadastrarMesa,
+                deletarMesa,
             }}
         >
             {children}

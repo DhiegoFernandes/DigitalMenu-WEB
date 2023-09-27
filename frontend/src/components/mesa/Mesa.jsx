@@ -1,11 +1,13 @@
 import { useState, useContext } from 'react';
 import './Mesa.css';
 import { MainContext } from '../../context/context';
+import { toast } from 'react-toastify';
+
 
 
 function Mesa() {
 
-    const {cadastrarMesa} = useContext(MainContext);
+    const {cadastrarMesa, deletarMesa} = useContext(MainContext);
 
     const [idMesa, setIdMesa] = useState("");
 
@@ -44,7 +46,12 @@ function Mesa() {
                     </div>
                     <div className="mesa-cadastrOpcoes-direita">
                         <h2>Opções</h2>
-                        <button className='btn-sistema laranja'>Deletar</button>
+                        <button className='btn-sistema laranja'
+                        type='submit'
+                        onClick={(e)=> deletarMesa(e, idMesa)}
+                        >
+                            Deletar
+                        </button>
                         <button className='btn-sistema laranja'>Atualizar</button>
                     </div>
                 </div>

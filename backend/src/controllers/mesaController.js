@@ -119,15 +119,14 @@ exports.atualizarMesa = async (req, res) => {
 
 
 exports.desativarMesa =  async(req, res) =>{
-    const{id} = req.body;
-
+    const{idMesa} = req.params;
     
-    if(!id){
+    if(!idMesa){
         return res.status(400).json({message : 'Campo(s) obrigatorio(s) nao preenchido'});
     }
 
     try {
-        const mesa = await mesaModel.listarMesaPorId(id);
+        const mesa = await mesaModel.listarMesaPorId(idMesa);
         if(!mesa){
             res.status(404).json({message:'Mesa nao encontrada'}); 
             return
@@ -135,7 +134,7 @@ exports.desativarMesa =  async(req, res) =>{
         if(mesa.status === 'DESATIVADO'){
             res.status(400).json({message:'Essa mesa já está desativada'});
         }
-        await mesaModel.deletarMesa(id);    
+        await mesaModel.deletarMesa(idMesa);    
         res.status(200).json('Mesa desativada');
     } catch (error) {
         res.status(500).json({message : 'Erro interno'});
