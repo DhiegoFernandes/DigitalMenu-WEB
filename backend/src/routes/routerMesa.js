@@ -10,6 +10,7 @@ router.get('/mesa/status', token, mesaController.listarPorStatus);
 router.get('/mesa/dados', token, mesaController.listarPorId);
 router.post('/mesa', token, mesaController.insertMesa);
 router.put('/mesa', token, mesaController.atualizarMesa);
+router.put('/mesa/:idMesa', token, mesaController.ativarMesa);
 router.delete('/mesa/:idMesa', token, mesaController.desativarMesa);
 
 module.exports = router;

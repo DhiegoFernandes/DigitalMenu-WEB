@@ -140,3 +140,26 @@ exports.desativarMesa =  async(req, res) =>{
         res.status(500).json({message : 'Erro interno'});
     }
 };
+
+exports.ativarMesa =  async(req, res) =>{
+    const{idMesa} = req.params;
+    
+    if(!idMesa){
+        return res.status(400).json({message : 'Campo(s) obrigatorio(s) nao preenchido'});
+    }
+
+    try {
+        const mesa = await mesaModel.listarMesaPorId(idMesa);
+        if(!mesa){
+            res.status(404).json({message:'Mesa nao encontrada'}); 
+            return
+        }
+        if(mesa.status === 'ATIVADO'){
+            res.status(400).json({message:'Essa mesa já está ativada'});
+        }
+        await mesaModel.ativarMesa(idMesa);    
+        res.status(200).json('Mesa ativada');
+    } catch (error) {
+        res.status(500).json({message : 'Erro interno'});
+    }
+};

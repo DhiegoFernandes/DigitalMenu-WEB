@@ -2,8 +2,15 @@ import { createContext, useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import api from "../api";
 import { toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 export const MainContext = createContext({});
 
+function avisoSucesso(mensagem){
+    toast.success(mensagem,{
+        theme: "light",
+        position: toast.POSITION.BOTTOM_CENTER
+    })
+}
 function MainProvider({ children }) {
     const navigate = useNavigate();
 
@@ -39,10 +46,12 @@ function MainProvider({ children }) {
             // Verifica se a conversão foi bem-sucedida
             if (isNaN(idMesa)) {
                 console.error("Número inválido");
+                toast.error("Número inválido");
                 return; // Retorna para evitar a chamada da API com um número inválido
             }
         } else {
             console.error("Número inválido");
+            toast.error("Número inválido");
             return; // Retorna para evitar a chamada da API com um número inválido
         }
     
@@ -50,9 +59,11 @@ function MainProvider({ children }) {
             const { data } = await api.post("/mesa", { idMesa });
             // Realiza o redirecionamento após o sucesso da chamada da API
             console.log("Mesa criada com sucesso id da mesa:"+ idMesa)
+            avisoSucesso("Mesa cadastrada com sucesso!");
             navigate("/sistema");
         } catch (e) {
             console.error("Erro ao cadastrar mesa:", e);
+            toast.error("Erro ao cadastrar mesa");
         }
     }
 
@@ -66,19 +77,51 @@ function MainProvider({ children }) {
             // Verifica se a conversão foi bem-sucedida
             if (isNaN(idMesa)) {
                 console.error("Número inválido");
+                toast.error("Erro ao desativar a mesa");
                 return; // Retorna para evitar a chamada da API com um número inválido
             }
         } else {
             console.error("Número inválido");
+            toast.error("Erro ao desativar a mesa");
             return; // Retorna para evitar a chamada da API com um número inválido
         }
     
         try {
             const { data } = await api.delete(`/mesa/${idMesa}`);
             console.log("Mesa deletada: " + idMesa);
+            avisoSucesso("Mesa desativada com sucesso!");
             navigate("/sistema");
         } catch (e) {
             console.error("Erro ao deletar mesa:", e);
+            toast.error("Erro ao desativar a mesa");
+        }
+    }
+
+    async function ativarMesa(e, idMesa) {
+        e.preventDefault();
+        
+        // Verifica se numeroMesa é uma string e pode ser convertida em um número
+        if (typeof idMesa === "string") {
+            idMesa = parseInt(idMesa, 10);
+    
+            // Verifica se a conversão foi bem-sucedida
+            if (isNaN(idMesa)) {
+                toast.error("Erro ao ativar a mesa");
+                return; // Retorna para evitar a chamada da API com um número inválido
+            }
+        } else {
+            toast.error("Erro ao ativar a mesa");
+            return; // Retorna para evitar a chamada da API com um número inválido
+        }
+    
+        try {
+            const { data } = await api.put(`/mesa/${idMesa}`);
+            console.log("Mesa ativada: " + idMesa);
+            avisoSucesso("Mesa ativada com sucesso!");
+            navigate("/sistema");
+        } catch (e) {
+            console.error("Erro ao ativar mesa:", e);
+            toast.error("Erro ao ativar a mesa");
         }
     }
 
@@ -138,6 +181,7 @@ function MainProvider({ children }) {
                 valido,
                 cadastrarMesa,
                 deletarMesa,
+                ativarMesa,
             }}
         >
             {children}

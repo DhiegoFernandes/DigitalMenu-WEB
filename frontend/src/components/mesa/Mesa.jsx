@@ -1,13 +1,14 @@
 import { useState, useContext } from 'react';
 import './Mesa.css';
 import { MainContext } from '../../context/context';
-import { toast } from 'react-toastify';
+import { toast, ToastContainer } from 'react-toastify';
+
 
 
 
 function Mesa() {
 
-    const {cadastrarMesa, deletarMesa} = useContext(MainContext);
+    const {cadastrarMesa, deletarMesa, ativarMesa} = useContext(MainContext);
 
     const [idMesa, setIdMesa] = useState("");
 
@@ -50,13 +51,30 @@ function Mesa() {
                         type='submit'
                         onClick={(e)=> deletarMesa(e, idMesa)}
                         >
-                            Deletar
+                            Desativar
                         </button>
-                        <button className='btn-sistema laranja'>Atualizar</button>
+                        <button className='btn-sistema laranja'
+                        type='submit'
+                        onClick={(e) => ativarMesa(e, idMesa)}
+                        >
+                            Ativar
+                        </button>
                     </div>
                 </div>
 
             </div>
+            <ToastContainer
+            position="bottom-center"
+            autoClose={5000}
+            hideProgressBar={false}
+            newestOnTop={false}
+            closeOnClick={false}
+            rtl={false}
+            pauseOnFocusLoss={false}
+            draggable
+            pauseOnHover={false}
+            theme="light"
+            />
         </>
     )
 

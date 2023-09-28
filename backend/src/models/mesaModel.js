@@ -95,6 +95,17 @@ const mesaModel = {
         }catch(err){
             throw err;
         }
+    },
+
+    ativarMesa: async (idMesa) => {
+        try{
+            const connection = await createConnection();
+            const sql = 'UPDATE mesa SET status = \'ATIVADO\' WHERE idmesa = ?;';
+            await connection.query(sql, [idMesa]);
+            await connection.end();
+        }catch(err){
+            throw err;
+        }
     }
 }
 
