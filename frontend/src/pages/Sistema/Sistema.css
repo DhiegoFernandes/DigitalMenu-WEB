@@ -56,7 +56,7 @@ h1 {
 
 body {
     font-family: "Open Sans", sans-serif;
-    color: #000;
+    color: black;
     line-height: 1.6;
     background: #ccc;
 }
@@ -82,6 +82,26 @@ main {
     justify-content: center;
     align-items: center;
 }
+
+/* PAGINAS  */
+
+.pag-titulo-sistema{
+    color: white;
+    margin-top: 10px;
+    margin-left: 1em;
+    margin-right: 1em;
+    margin-bottom: 10px;
+    padding: 10px;
+    padding-left: 1em;
+    padding-right: 1em;
+    border-radius: 20px;
+}
+
+.txt-pesquisar-sistema {
+    color: white;
+    text-align: center;
+}
+
 
 
 /* --------------  LATERAL TOPO (logo digitalmenu) --------------*/
@@ -188,4 +208,12 @@ main {
     grid-column: 2/6;
     grid-row: 2/4;
 
+}
+
+.conteudo{
+    display: none;
+}
+
+.show-conteudo{
+    display: block;
 }

@@ -16,8 +16,8 @@ function Mesa() {
         <>
 
             <div className="mesa-main">
-                <h1>Mesas</h1>
-                <span>Pesquisar</span>
+                <h1 className='pag-titulo-sistema fade2'>Mesas</h1>
+                <h2 className='txt-pesquisar-sistema'>Pesquisar</h2>
                 <div>
                     <button className='btn-sistema laranja'>Status</button>
                     <button className='btn-sistema laranja'>Número</button>

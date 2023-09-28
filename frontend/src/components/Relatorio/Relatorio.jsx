@@ -17,9 +17,9 @@ function Relatorio() {
     return (
         <>
             <div className='relatorio-main'>
-                <div className='relatorio-topo'>
-                    <div className='text-relatorio'>
-                        <h1>Relatório</h1>
+                <div className='relatorio-topo '>
+                    <div>
+                        <h1 className='pag-titulo-sistema fade2'>Relatório</h1>
                         <h2 className='text-topRelatorio'>Top produtos mais vendidos</h2>
                     </div>
                     <div className="relatorio-tabelaSup">
@@ -28,7 +28,7 @@ function Relatorio() {
                     </div>
                 </div>
                 <div className='relatorio-below'>
-                    <h2 className='txt-pesquisar'>Pesquisar</h2>
+                    <h2 className='txt-pesquisar-sistema'>Pesquisar</h2>
                     <div>
                         <button className='btn-sistema laranja'>Produtos mais faturado</button>
                         <button className='btn-sistema laranja'>Produtos mais vendidos</button>

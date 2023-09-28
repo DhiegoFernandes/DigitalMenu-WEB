@@ -1,82 +1,75 @@
-.usuario-completo{
+.usuario-completo {
     display: flex;
+    justify-content: center;
     flex-direction: column;
     align-items: center;
 }
-.usuario-completo h1{
-    font-weight: bold;
-    
-}
-.titulo{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    
-}
-.pesquisar-botoes{
-    display: flex;
-    gap: 20px;
-    
-}
-.pesquisar-botoes button{
-    margin-top: 10px;
-    width: 80px;
-    height: 20px;
-    background-color: #FAA914;
-    color: black;
-    
-    font-size: 15px;
-    border-radius: 20px;
-    margin-bottom: 10px;
-}
-.usuarios-tabela{
+
+
+.usuarios-tabela {
     margin-bottom: 15px;
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-top: 30px;
+    margin-top: 10px;
     background-color: #fff;
     width: 800px;
     height: 250px;
 }
-.usuarios-opcoes{
+
+.usuarios-opcoes {
     display: flex;
-    gap: 290px;
 
 }
-.usuarios-opcoes-esquerda{
+
+.usuarios-opcoes-esquerda {
     display: flex;
     flex-direction: column;
     align-items: center;
 
+
 }
-.usuario-span-negrito{
+
+.btn-cadastrar-usuario{
+    margin-left: 75px;
+}
+
+.lado-user{
+    margin-right: 200px;
+    margin-top: 40px;
+    margin-left: 20px;
+}
+
+.usuario-span-negrito {
     font-weight: bold;
 }
-.usuarios-opcoes-esquerda input[type="text"]{
+
+.btn-cadastrar-usuarios{
+    margin-right: 200px;
+    
+}
+
+.usuarios-opcoes-esquerda input[type="text"] {
     margin-left: 10px;
     width: 120px;
     height: 20px;
 }
-.tipo-acesso-radio{
+
+
+.tipo-acesso-radio {
     margin-bottom: 10px;
 }
-.tipo-acesso-radio label{
+
+.tipo-acesso-radio label {
     margin-left: 10px;
 }
-.usuario-span-margem{
+
+.usuario-span-margem {
     margin-left: 10px;
 }
-.usuarios-opcoes button{
-    width: 80px;
-    height: 20px;
-    background-color: #FAA914;
-    color: black;
-    font-size: 15px;
-    border-radius: 20px;
-    
-}
-.usuarios-opcoes-direita{
+
+.usuarios-opcoes-direita {
+    text-align: center;
     display: flex;
     flex-direction: column;
     gap: 20px;
