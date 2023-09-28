@@ -5,9 +5,10 @@ import { toast, ToastContainer } from 'react-toastify';
 
 
 
+
 function Mesa() {
 
-    const {cadastrarMesa, deletarMesa} = useContext(MainContext);
+    const {cadastrarMesa, deletarMesa, ativarMesa} = useContext(MainContext);
 
     const [idMesa, setIdMesa] = useState("");
 
@@ -52,7 +53,12 @@ function Mesa() {
                         >
                             Desativar
                         </button>
-                        <button className='btn-sistema laranja'>Atualizar</button>
+                        <button className='btn-sistema laranja'
+                        type='submit'
+                        onClick={(e) => ativarMesa(e, idMesa)}
+                        >
+                            Ativar
+                        </button>
                     </div>
                 </div>
 

@@ -97,6 +97,34 @@ function MainProvider({ children }) {
         }
     }
 
+    async function ativarMesa(e, idMesa) {
+        e.preventDefault();
+        
+        // Verifica se numeroMesa é uma string e pode ser convertida em um número
+        if (typeof idMesa === "string") {
+            idMesa = parseInt(idMesa, 10);
+    
+            // Verifica se a conversão foi bem-sucedida
+            if (isNaN(idMesa)) {
+                toast.error("Erro ao ativar a mesa");
+                return; // Retorna para evitar a chamada da API com um número inválido
+            }
+        } else {
+            toast.error("Erro ao ativar a mesa");
+            return; // Retorna para evitar a chamada da API com um número inválido
+        }
+    
+        try {
+            const { data } = await api.put(`/mesa/${idMesa}`);
+            console.log("Mesa ativada: " + idMesa);
+            avisoSucesso("Mesa ativada com sucesso!");
+            navigate("/sistema");
+        } catch (e) {
+            console.error("Erro ao ativar mesa:", e);
+            toast.error("Erro ao ativar a mesa");
+        }
+    }
+
     //Login para as mesas
     async function autenticacaoMesa(e, idMesa) {
         e.preventDefault();
@@ -153,6 +181,7 @@ function MainProvider({ children }) {
                 valido,
                 cadastrarMesa,
                 deletarMesa,
+                ativarMesa,
             }}
         >
             {children}
