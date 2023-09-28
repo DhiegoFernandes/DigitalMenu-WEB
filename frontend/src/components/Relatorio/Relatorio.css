@@ -35,11 +35,11 @@
 .text-topRelatorio {
     font-size: 20px;
     text-align: center;
+    color: white;
 
 }
 
 .relatorio-tabelaSup {
-    margin-top: 10px;
     background-color: #ffffff;
     width: 800px;
     height: 150px;
@@ -55,13 +55,6 @@
     text-align: center;
     width: 1000px;
     height: auto;
-}
-
-.txt-pesquisar {
-    color: white;
-    margin-bottom: 5px;
-    padding: 10px;
-    border-radius: 20px;
 }
 
 /* Botoes */

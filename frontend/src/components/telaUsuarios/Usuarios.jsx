@@ -7,38 +7,47 @@ function Usuarios() {
         <>
 
             <main className='usuario-completo'>
-                <div className='titulo'>
-                    <h1>Usuários</h1>
-                    <span>Pesquisar</span>
+                <div>
+                    <h1 className='pag-titulo-sistema fade2'>Usuários</h1>
+                    <h2 className='txt-pesquisar-sistema '>Pesquisar</h2>
                 </div>
-                <div className='pesquisar-botoes'>
-                    <button>ID</button>
-                    <button>Nome</button>
-                    <button>Status</button>
-                    <button>Todos</button>
+                <div>
+                    <button className='btn-sistema laranja'>ID</button>
+                    <button className='btn-sistema laranja'>Nome</button>
+                    <button className='btn-sistema laranja'>Status</button>
+                    <button className='btn-sistema laranja'>Todos</button>
                 </div>
                 <div className='usuarios-tabela'>
                     TABELA AQUI
-                    
+
                 </div>
                 <div className='usuarios-opcoes'>
                     <div className='usuarios-opcoes-esquerda'>
-                        <h3>Controle de usuários</h3>
+                        <h2>Controle de usuários</h2>
                         <span>Usuário:<input type="text" /></span>
                         <span className='usuario-span-margem'>Senha:<input type="text" /></span>
-                        <span className='usuario-span-negrito'>Tipo acesso: </span>
-                        <div className='tipo-acesso-radio'>
-                            <input type="radio" id="usuario" name='op' value="Administrador" />
-                            <label htmlFor="Administrador">Administrador</label><br />
-                            <input type="radio" id="atendente" name='op' value="atendente" />
-                            <label htmlFor="atendente">Atendente</label><br />
-                        </div>
-                        <button>Cadastrar</button>
+                        <button className='btn-sistema laranja btn-cadastrar-usuario'>Cadastrar</button>
                     </div>
+                    <div className='usuario-tipoacessoLado'>
+                        <div className='lado-user'>
+                            <span className='usuario-span-negrito'>Tipo acesso: </span>
+                            <div className='tipo-acesso-radio'>
+                                <input type="radio" id="usuario" name='op' value="Administrador" />
+                                <label htmlFor="Administrador">Administrador</label><br />
+                                <input type="radio" id="atendente" name='op' value="atendente" />
+                                <label htmlFor="atendente">Atendente</label><br />
+                            </div>
+                        </div>
+
+
+                    </div>
+
+
+
                     <div className='usuarios-opcoes-direita'>
-                        <h3>Opções</h3>
-                        <button>Atualizar</button>
-                        <button>Desativar</button>
+                        <h2>Opções</h2>
+                        <button className='btn-sistema laranja'>Atualizar</button>
+                        <button className='btn-sistema laranja'>Desativar</button>
 
                     </div>
                 </div>
